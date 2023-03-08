@@ -30,3 +30,6 @@ C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\eggstore.csproj.CoreCompileInputs.cache
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\eggstore.exe
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\eggstore.pdb
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\Usuarios.g.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\Usuarios.baml
