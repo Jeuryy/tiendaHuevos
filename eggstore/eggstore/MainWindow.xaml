@@ -169,7 +169,7 @@
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        Margin="5,0,0,0"/>
-                        </Grid> 
+                        </Grid>
                     </Button>
                     <!--#endregion-->
                     <!--#region Minimizar -->
@@ -201,14 +201,27 @@
 
                     </Button>
                     <!--#endregion-->
-                    
+
                 </Grid>
-            </Grid>   
+            </Grid>
+            <!--#endregion-->
+            <!--#region CONTENT -->
+            <Grid x:Name="gridContent"
+                   VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right"
+                  Height="565"
+                  Width="925">
+                <Border CornerRadius="0,0,0,10"
+                        Background="Cyan"/>
+                <TextBlock Text="Jeuryy"
+                           VerticalAlignment="Center"
+                           FontSize="50"/>
+            </Grid>
             <!--#endregion-->
             <!--#region SIDEBAR -->
             <Grid x:Name="gridMenu"
                   Background="Transparent"
-                  Width="75"
+                  Width="200"
                   HorizontalAlignment="Left"
                   Margin="0,35,0,0" PreviewMouseLeftButtonDown="PreviewMouseLeftButtonDownBG">
                 <Border Background="LightBlue"
@@ -224,7 +237,10 @@
                         <ToggleButton Style="{DynamicResource BTNTOGGLESTYLE}" x:Name="btnShowHide"
                                       Width="30"
                                       Height="30"
-                                      BorderBrush="Transparent" Checked="TBShow" Unchecked="TBHide" Cursor="Hand">
+                                      BorderBrush="Transparent" 
+                                      Checked="TBShow" 
+                                      Unchecked="TBHide" 
+                                      Cursor="Hand">
                             <ToggleButton.Background>
                                 <ImageBrush ImageSource="/src/img/menu.png"/>
                             </ToggleButton.Background>
@@ -257,30 +273,30 @@
                                 <!--#endregion-->
                             </ToggleButton.Triggers>
                         </ToggleButton>
-                        
                     </Grid>
                     <!--#endregion-->
-                </StackPanel>
+                    <!--#region LISTA -->
+                    <ListView Background="Transparent"
+                              BorderBrush="Transparent"
+                              Margin="0,30,0,0"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <!--#region INICIO -->
+                        <ListViewItem Height="70">
+                            <Button x:Name="btnInicio"
+                                    Height="70"
+                                    Width="200">
+                                <Grid></Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                    </ListView>
                     <!--#endregion-->
+                </StackPanel>
 
-            </Grid>
-            <!--#endregion-->
-            <!--#region CONTENT -->
-            <Grid x:Name="gridContent"
-                   VerticalAlignment="Bottom"
-                  HorizontalAlignment="Right"
-                  Height="565"
-                  Width="925">
-                <Border CornerRadius="0,0,0,10"
-                        Background="Cyan"/>
-                <TextBlock Text="Jeuryy"
-                           VerticalAlignment="Center"
-                           FontSize="50"
-                           />
-
+                <!--#endregion-->
             </Grid>
             <!--#endregion-->
         </Grid>
     </Border>
-    
+
 </Window>
