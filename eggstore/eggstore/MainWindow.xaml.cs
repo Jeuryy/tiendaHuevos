@@ -27,12 +27,17 @@ namespace eggstore
 
         private void TBShow(object sender, RoutedEventArgs e)
         {
-
+            gridContent.Opacity = 0.5;
         }
 
         private void TBHide(object sender, RoutedEventArgs e)
         {
+            gridContent.Opacity = 1;
+        }
 
+        private void PreviewMouseLeftButtonDownBG(object sender, MouseButtonEventArgs e)
+        {
+            btnShowHide.IsChecked = false;
         }
     }
 }
