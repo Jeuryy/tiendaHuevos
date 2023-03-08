@@ -53,12 +53,12 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <Setter Property="Background" TargetName="border" Value="#000"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#000"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFBEE6FD"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
@@ -71,6 +71,8 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <!--#region PROYECTO -->
+    
     <Border CornerRadius="10"
             Background="GhostWhite">
         <Grid Name="Principal"
@@ -181,7 +183,7 @@
                             Width="25"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
-                            Margin="0,5,35,0">
+                            Margin="0,5,35,0" Click="Minimizar">
                         <Image Source="src/img/minimize.png"
                                Cursor="Hand"/>
                     </Button>
@@ -195,7 +197,7 @@
                             Width="25"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
-                            Margin="0,5,5,0">
+                            Margin="0,5,5,0" Click="Cerrar">
                         <Image Source="src/img/close.png"
                                Cursor="Hand"/>
 
@@ -221,7 +223,7 @@
             <!--#region SIDEBAR -->
             <Grid x:Name="gridMenu"
                   Background="Transparent"
-                  Width="200"
+                  Width="75"
                   HorizontalAlignment="Left"
                   Margin="0,35,0,0" PreviewMouseLeftButtonDown="PreviewMouseLeftButtonDownBG">
                 <Border Background="LightBlue"
@@ -229,6 +231,8 @@
                 <!--#region MENU -->
                 <StackPanel Background="Transparent"
                             VerticalAlignment="Top">
+                    
+
                     <!--#region SHOW/HIDE -->
                     <Grid Background="Transparent"
                           VerticalAlignment="Top"
@@ -284,19 +288,122 @@
                         <ListViewItem Height="70">
                             <Button x:Name="btnInicio"
                                     Height="70"
-                                    Width="200">
-                                <Grid></Grid>
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/src/img/home.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Inicio"
+                                               FontWeight="semibold"
+                                               FontSize="15"
+                                               VerticalAlignment="center"
+                                               HorizontalAlignment="center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region POS -->
+                        <ListViewItem Height="70">
+                            <Button x:Name="btnPOS"
+                                    Height="70"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/src/img/store.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Punto de ventas"
+                                               FontWeight="semibold"
+                                               FontSize="15"
+                                               VerticalAlignment="center"
+                                               HorizontalAlignment="center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region PRODUCTO -->
+                        <ListViewItem Height="70">
+                            <Button x:Name="btnProducto"
+                                    Height="70"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/src/img/producto.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Producto"
+                                               FontWeight="semibold"
+                                               FontSize="15"
+                                               VerticalAlignment="center"
+                                               HorizontalAlignment="center"/>
+                                </Grid>
+                            </Button>
+                        </ListViewItem>
+                        <!--#endregion-->
+                        <!--#region USUARIOS -->
+                        <ListViewItem Height="70">
+                            <Button x:Name="btnUsuarios"
+                                    Height="70"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    Cursor="Hand"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                <Grid Width="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="50"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           Source="/src/img/users.png"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Usuarios"
+                                               FontWeight="semibold"
+                                               FontSize="15"
+                                               VerticalAlignment="center"
+                                               HorizontalAlignment="center"/>
+                                </Grid>
                             </Button>
                         </ListViewItem>
                         <!--#endregion-->
                     </ListView>
                     <!--#endregion-->
                 </StackPanel>
-
                 <!--#endregion-->
+
             </Grid>
             <!--#endregion-->
         </Grid>
     </Border>
-
+    <!--#endregion-->
 </Window>
