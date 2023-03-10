@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace eggstore.Views
 {
@@ -23,6 +14,24 @@ namespace eggstore.Views
         public Usuarios()
         {
             InitializeComponent();
+            CargarDatos();
+        }
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString);
+        void CargarDatos()
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select IdUsuario, Nombres, Apellidos, Telefono, Correo, NombrePrivilegio from Usuarios inner join Privilegios on Usuarios.Privilegio=Privilegios.IdPrivilegio order by IdUsuario ASC", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridDatos.ItemsSource = dt.DefaultView;
+            con.Close();
+        }
+
+        private void Agregar(object sender, RoutedEventArgs e)
+        {
+            CRUDUsuarios ventana = new CRUDUsuarios();
+            frameUsuarios.Content = ventana;
         }
     }
 }

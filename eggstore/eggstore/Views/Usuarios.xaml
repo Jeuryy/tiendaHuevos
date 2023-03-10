@@ -198,7 +198,19 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-
+        </Style>
+        <Style TargetType="{x:Type DataGridCell}">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background"  Value="#ffa02c"/>
+                    <Setter Property="BorderBrush"  Value="Transparent"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background"  Value="#ffa02c"/>
+                    <Setter Property="BorderBrush"  Value="Transparent"/>
+                    <Setter Property="Foreground"  Value="White"/>
+                </Trigger>
+            </Style.Triggers>    
         </Style>
     </UserControl.Resources>
     <!--#endregion-->
@@ -264,7 +276,7 @@
                     Name="btnBuscar"
                     HorizontalAlignment="Left">
                 <TextBlock Text="Buscar"
-                           Foreground="White"
+                           Foreground="#000"
                            FontSize="15"/>
             </Button>
             <!--#endregion-->
@@ -276,9 +288,10 @@
                     Cursor="Hand"
                     Width="150"
                     x:Name="btnCrearUsuario"
+                    Click="Agregar"
                     Style="{DynamicResource BTNBUSCARSTYLE}" Margin="35,0,36,0">
                 <TextBlock Text="Agregar Usuario"
-                           Foreground="White"
+                           Foreground="#000"
                            FontSize="15"/>
 
             </Button>
@@ -309,22 +322,59 @@
                             <DataTemplate>
                                 <DockPanel>
                                     <!--CREACION DE BOTONES PARA CRUD-->
+                                    <Button Content="Consultar"
+                                            Background="#ff8c00"
+                                            x:Name="btnConsultar"
+                                            Width="80"
+                                            BorderBrush="Transparent"
+                                            Foreground="#000"
+                                            Cursor="Hand"
+                                            Style="{DynamicResource BTNBUSCARSTYLE}"/>
+                                    <Button Content="Modificar"
+                                            Background="#ff8c00"
+                                            x:Name="btnModificar"
+                                            Width="80"
+                                            BorderBrush="Transparent"
+                                            Foreground="#000"
+                                            Cursor="Hand"
+                                            Style="{DynamicResource BTNBUSCARSTYLE}"/>
+                                    <Button Content="Eliminar"
+                                            Background="#ff8c00"
+                                            x:Name="btnEliminar"
+                                            Width="80"
+                                            BorderBrush="Transparent"
+                                            Foreground="#000"
+                                            Cursor="Hand"
+                                            Style="{DynamicResource BTNBUSCARSTYLE}"/>
+                                <!--#endregion-->
                                 </DockPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="ID"
-                                        Width="50"/>
+                                        Width="50"
+                                        Foreground="#000"
+                                        Binding="{Binding IdUsuario}"/>
                     <DataGridTextColumn Header="Nombre"
-                                        Width="100"/>
+                                        Width="100"
+                                        Foreground="#000"
+                                        Binding="{Binding Nombres}"/>
                     <DataGridTextColumn Header="Apellidos"
-                                        Width="100"/>
+                                        Width="100"
+                                        Foreground="#000"
+                                        Binding="{Binding Apellidos}"/>
                     <DataGridTextColumn Header="Teléfono"
-                                        Width="100"/>
+                                        Width="100"
+                                        Foreground="#000"
+                                        Binding="{Binding Telefono}"/>
                     <DataGridTextColumn Header="Email"
-                                        Width="*"/>
+                                        Width="*"
+                                        Foreground="#000"
+                                        Binding="{Binding Correo}"/>
                     <DataGridTextColumn Header="Privilegio"
-                                        Width="*"/>
+                                        Width="*"
+                                        Foreground="#000"
+                                        Binding="{Binding NombrePrivilegio}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->
