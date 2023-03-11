@@ -125,6 +125,39 @@
                     Click="Regresar"
                     Background="#fac867"/>
             <!--#endregion-->
+            <!--#region CREAR -->
+            <Button x:Name="btnCrear"
+                    Content="Crear"
+                    Grid.Row="18"
+                    Grid.Column="5"
+                    Width="100"
+                    Background="#fac867"
+                    Style="{DynamicResource BTNREGRESAR}"
+                    Visibility="Hidden"
+                    Click="Crear"/>
+            <!--#endregion-->
+            <!--#region ELIMINAR -->
+            <Button x:Name="btnEliminar"
+                    Content="Eliminar"
+                    Grid.Row="18"
+                    Grid.Column="5"
+                    Width="100"
+                    Background="#fac867"
+                    Style="{DynamicResource BTNREGRESAR}"
+                    Visibility="Hidden"
+                    Click="Eliminar"/>
+            <!--#endregion-->
+            <!--#region MODIFICAR -->
+            <Button x:Name="btnModificar"
+                    Content="Modificar"
+                    Grid.Row="18"
+                    Grid.Column="5"
+                    Width="100"
+                    Background="#fac867"
+                    Style="{DynamicResource BTNREGRESAR}"
+                    Visibility="Hidden"
+                    Click="Modificar"/>
+            <!--#endregion-->
             <!--#endregion-->
             <!--#region CONTENIDO -->
             <TextBlock Grid.Row="4"
@@ -185,17 +218,34 @@
                       x:Name="cbPrivilegio"/>
             <Image Grid.Row="4"
                    Grid.Column="4"
-                   Grid.RowSpan="11"
+                   Grid.RowSpan="7"
                    Grid.ColumnSpan="2"
                    x:Name="imagen"
                   Source="/src/img/profile.png"/>
             <Button Grid.Column="4"
-                    Grid.Row="16"
+                    Grid.Row="12"
                     Grid.ColumnSpan="2"
                     Width="100"
                     Content="Actualizar foto"
-                     Background="#fad111"
+                     Background="#fac147"
+                    Click="Subir"
                     Style="{DynamicResource BTNREGRESAR}"/>
+            <TextBlock Grid.Row="14"
+                       Grid.Column="4"
+                       Text="Usuario:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="14"
+                     Grid.Column="5"
+                     x:Name="tbUsuario"/>
+            <TextBlock Grid.Row="16"
+                       Grid.Column="4"
+                       Text="Contraseña:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="16"
+                     Grid.Column="5"
+                     x:Name="tbContrasenia"/>
             <!--#endregion-->
 
         </Grid>

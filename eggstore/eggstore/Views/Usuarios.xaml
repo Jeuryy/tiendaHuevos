@@ -346,7 +346,7 @@
                                             Foreground="#000"
                                             Cursor="Hand"
                                             Style="{DynamicResource BTNBUSCARSTYLE}"/>
-                                <!--#endregion-->
+                                <!--# endregion-->
                                 </DockPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -354,26 +354,32 @@
                     <DataGridTextColumn Header="ID"
                                         Width="50"
                                         Foreground="#000"
+                                        FontSize="12"
                                         Binding="{Binding IdUsuario}"/>
                     <DataGridTextColumn Header="Nombre"
                                         Width="100"
                                         Foreground="#000"
+                                        FontSize="12"
                                         Binding="{Binding Nombres}"/>
                     <DataGridTextColumn Header="Apellidos"
                                         Width="100"
                                         Foreground="#000"
+                                        FontSize="12"
                                         Binding="{Binding Apellidos}"/>
                     <DataGridTextColumn Header="Teléfono"
                                         Width="100"
                                         Foreground="#000"
+                                        FontSize="12"
                                         Binding="{Binding Telefono}"/>
                     <DataGridTextColumn Header="Email"
                                         Width="*"
                                         Foreground="#000"
+                                        FontSize="12"
                                         Binding="{Binding Correo}"/>
                     <DataGridTextColumn Header="Privilegio"
                                         Width="*"
                                         Foreground="#000"
+                                        FontSize="12"
                                         Binding="{Binding NombrePrivilegio}"/>
                 </DataGrid.Columns>
             </DataGrid>
