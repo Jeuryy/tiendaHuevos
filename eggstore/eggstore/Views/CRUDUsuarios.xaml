@@ -229,6 +229,7 @@
                     Content="Actualizar foto"
                      Background="#fac147"
                     Click="Subir"
+                    x:Name="btnSubir"
                     Style="{DynamicResource BTNREGRESAR}"/>
             <TextBlock Grid.Row="14"
                        Grid.Column="4"

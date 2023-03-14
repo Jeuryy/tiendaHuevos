@@ -49,9 +49,31 @@ namespace eggstore.Views
             ventana.tbEmail.IsEnabled = false;
             ventana.tbSector.IsEnabled = false;
             ventana.tbIdentificacion.IsEnabled = false;
+            ventana.cbPrivilegio.IsEnabled = false;
             ventana.tbUsuario.IsEnabled = false;
             ventana.tbContrasenia.IsEnabled = false;
             ventana.btnSubir.IsEnabled = false;
+        }
+
+        private void Actualizar(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).CommandParameter;
+            CRUDUsuarios ventana = new CRUDUsuarios();
+            ventana.IdUsuario = id;
+            ventana.Consultar();
+            frameUsuarios.Content = ventana;
+            ventana.Titulo.Text = "Actualizar Usuaurio";
+            ventana.tbNombres.IsEnabled = true;
+            ventana.tbApellidos.IsEnabled = true;
+            ventana.tbTelefono.IsEnabled = true;
+            ventana.tbEmail.IsEnabled = true;
+            ventana.tbSector.IsEnabled = true;
+            ventana.tbIdentificacion.IsEnabled = true;
+            ventana.cbPrivilegio.IsEnabled = true;
+            ventana.tbUsuario.IsEnabled = true;
+            ventana.tbContrasenia.IsEnabled = true;
+            ventana.btnSubir.IsEnabled = true;
+            ventana.btnModificar.Visibility = Visibility.Visible;
         }
     }
 }

@@ -47,6 +47,9 @@ namespace eggstore.Views
             }
             con.Close();
         }
+        #region CRUD
+        public int IdUsuario;
+        #region CREATE
 
         private void Crear(object sender, RoutedEventArgs e)
         {
@@ -84,16 +87,71 @@ namespace eggstore.Views
             }
 
         }
+        #endregion
+        #region READ
+        public void Consultar()
+        {
+            con.Open();
+            SqlCommand com = new SqlCommand("select * from Usuarios inner join Privilegios on Usuarios.Privilegio=Privilegios.IdPrivilegio where IdUsuario="+IdUsuario, con);
+            SqlDataReader rdr = com.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            rdr.Read();
+            this.tbNombres.Text = rdr["Nombres"].ToString();
+            this.tbApellidos.Text = rdr["Apellidos"].ToString();
+            this.tbTelefono.Text = rdr["Telefono"].ToString();
+            this.tbEmail.Text = rdr["Correo"].ToString();
+            this.tbSector.Text = rdr["Sector"].ToString();
+            this.tbIdentificacion.Text = rdr["Identificacion"].ToString();
+            this.cbPrivilegio.SelectedItem = rdr["NombrePrivilegio"];
+            this.tbUsuario.Text = rdr["usuario"].ToString();
+            this.tbContrasenia.Text = "Eso no se puede decir ahora";
+            rdr.Close();
 
+            //IMAGEN
+            DataSet ds = new DataSet();
+            SqlDataAdapter sqda = new SqlDataAdapter("Select img from usuarios where IdUsuario='"+IdUsuario+"'",con);
+            sqda.Fill(ds);
+            byte[] data = (byte[])ds.Tables[0].Rows[0][0];
+            MemoryStream strm = new MemoryStream();
+            strm.Write(data,0,data.Length);
+            strm.Position = 0;
+            System.Drawing.Image img = System.Drawing.Image.FromStream(strm);
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            MemoryStream ms = new MemoryStream();
+            img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            ms.Seek(0, SeekOrigin.Begin);
+            bi.StreamSource = ms;
+            bi.EndInit();
+            imagen.Source = bi;
+            //IMAGEN
+            con.Close();
+        }
+        #endregion
+        #region UPDATE
+        private void Modificar(object sender, RoutedEventArgs e)
+        {
+            con.Open();
+            SqlCommand com = new SqlCommand("Select IdPrivilegio from Privilegios where NombrePrivilegio='"+cbPrivilegio.Text+"'", con);
+            object valor = com.ExecuteScalar();
+            int privilegio = (int)valor;
+            string patron = "eggstore";
+            SqlCommand cmd = new SqlCommand("Update usuarios set Nombres='"+tbNombres.Text+"',Apellidos='"+tbApellidos.Text+"',Telefono='"+float.Parse(tbTelefono.Text)+"',Correo='"+tbEmail.Text+"',Identificacion='"+float.Parse(tbIdentificacion.Text)+"',Sector='"+tbSector.Text+"'Privilegio='"+privilegio+"', Usuario='"+tbUsuario.Text+"',Contrasenia=(EncryptByPassPhrase('"+patron+"','"+tbContrasenia.Text+"'))",con);
+            if (imagensubida == true)
+            {
+                SqlCommand img = new SqlCommand("Update Usuarios set img=@img where IdUsuario='"+IdUsuario+"'",con);
+                img.Parameters.AddWithValue("@img", SqlDbType.VarBinary).Value = data;
+                img.ExecuteNonQuery();
+            }
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Content = new Usuarios();
+        }
+        #endregion
         private void Eliminar(object sender, RoutedEventArgs e)
         {
 
         }
-
-        private void Modificar(object sender, RoutedEventArgs e)
-        {
-
-        }
+        #endregion
         byte[] data;
         private bool imagensubida = false;
         private void Subir(object sender, RoutedEventArgs e)

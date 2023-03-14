@@ -329,6 +329,8 @@
                                             BorderBrush="Transparent"
                                             Foreground="#000"
                                             Cursor="Hand"
+                                            Click="Consultar"
+                                            CommandParameter="{Binding IdUsuario}"
                                             Style="{DynamicResource BTNBUSCARSTYLE}"/>
                                     <Button Content="Modificar"
                                             Background="#ff8c00"
@@ -337,7 +339,8 @@
                                             BorderBrush="Transparent"
                                             Foreground="#000"
                                             Cursor="Hand"
-                                            Style="{DynamicResource BTNBUSCARSTYLE}"/>
+                                             CommandParameter="{Binding IdUsuario}"
+                                            Style="{DynamicResource BTNBUSCARSTYLE}" Click="Actualizar"/>
                                     <Button Content="Eliminar"
                                             Background="#ff8c00"
                                             x:Name="btnEliminar"
