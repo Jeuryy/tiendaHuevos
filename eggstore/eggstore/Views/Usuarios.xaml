@@ -339,7 +339,7 @@
                                             BorderBrush="Transparent"
                                             Foreground="#000"
                                             Cursor="Hand"
-                                             CommandParameter="{Binding IdUsuario}"
+                                            CommandParameter="{Binding IdUsuario}"
                                             Style="{DynamicResource BTNBUSCARSTYLE}" Click="Actualizar"/>
                                     <Button Content="Eliminar"
                                             Background="#ff8c00"
@@ -348,7 +348,8 @@
                                             BorderBrush="Transparent"
                                             Foreground="#000"
                                             Cursor="Hand"
-                                            Style="{DynamicResource BTNBUSCARSTYLE}"/>
+                                            CommandParameter="{Binding IdUsuario}"
+                                            Style="{DynamicResource BTNBUSCARSTYLE}" Click="Eliminar"/>
                                 <!--# endregion-->
                                 </DockPanel>
                             </DataTemplate>

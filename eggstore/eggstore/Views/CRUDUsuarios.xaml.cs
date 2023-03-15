@@ -50,7 +50,6 @@ namespace eggstore.Views
         #region CRUD
         public int IdUsuario;
         #region CREATE
-
         private void Crear(object sender, RoutedEventArgs e)
         {
             if (tbNombres.Text==""||tbApellidos.Text== ""||tbTelefono.Text==""||tbIdentificacion.Text==""||tbEmail.Text==""||tbSector.Text==""||tbUsuario.Text==""||tbContrasenia.Text==""||cbPrivilegio.Text=="")
@@ -103,7 +102,6 @@ namespace eggstore.Views
             this.tbIdentificacion.Text = rdr["Identificacion"].ToString();
             this.cbPrivilegio.SelectedItem = rdr["NombrePrivilegio"];
             this.tbUsuario.Text = rdr["usuario"].ToString();
-            this.tbContrasenia.Text = "Eso no se puede decir ahora";
             rdr.Close();
 
             //IMAGEN
@@ -135,23 +133,46 @@ namespace eggstore.Views
             object valor = com.ExecuteScalar();
             int privilegio = (int)valor;
             string patron = "eggstore";
-            SqlCommand cmd = new SqlCommand("Update usuarios set Nombres='"+tbNombres.Text+"',Apellidos='"+tbApellidos.Text+"',Telefono='"+float.Parse(tbTelefono.Text)+"',Correo='"+tbEmail.Text+"',Identificacion='"+float.Parse(tbIdentificacion.Text)+"',Sector='"+tbSector.Text+"'Privilegio='"+privilegio+"', Usuario='"+tbUsuario.Text+"',Contrasenia=(EncryptByPassPhrase('"+patron+"','"+tbContrasenia.Text+"'))",con);
-            if (imagensubida == true)
+            if (tbNombres.Text == "" || tbApellidos.Text == "" || tbTelefono.Text == "" || tbIdentificacion.Text == "" || tbEmail.Text == "" || tbSector.Text == "" || tbUsuario.Text == "" || cbPrivilegio.Text == "")
             {
-                SqlCommand img = new SqlCommand("Update Usuarios set img=@img where IdUsuario='"+IdUsuario+"'",con);
-                img.Parameters.AddWithValue("@img", SqlDbType.VarBinary).Value = data;
-                img.ExecuteNonQuery();
+                MessageBox.Show("Los campos no pueden quedar vacíos");
             }
+            else
+            {
+                //Contrasenia=(EncryptByPassPhrase('" + patron + "','" + tbContrasenia.Text + "'))
+                SqlCommand cmd = new SqlCommand("Update Usuarios set Nombres='" + tbNombres.Text + "',Apellidos='" + tbApellidos.Text + "',Telefono='" + float.Parse(tbTelefono.Text) + "',Correo='" + tbEmail.Text + "',Identificacion='" + float.Parse(tbIdentificacion.Text) + "',Sector='" + tbSector.Text + "',Privilegio='" + privilegio + "',Usuario='" + tbUsuario.Text + "'where IdUsuario="+IdUsuario+"", con);
+                cmd.ExecuteNonQuery();
+                if (imagensubida == true)
+                {
+                    SqlCommand img = new SqlCommand("Update Usuarios set img=@img where IdUsuario='" + IdUsuario + "'", con);
+                    img.Parameters.AddWithValue("@img", SqlDbType.VarBinary).Value = data;
+                    img.ExecuteNonQuery();
+                }
+                
+            }
+            if (tbContrasenia.Text != "")
+            {
+                SqlCommand cmd = new SqlCommand("Update Usuarios set Contrasenia=(EncryptByPassPhrase('" + patron +"','" + tbContrasenia.Text +"')) where IdUsuario='"+IdUsuario+"'", con);
+                cmd.ExecuteNonQuery();
+            }
+            con.Close();
+            Content = new Usuarios();
+        }
+        #endregion
+        #region DELETE
+        private void Eliminar(object sender, RoutedEventArgs e)
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Delete from Usuarios Where IdUsuario="+IdUsuario+"", con);
             cmd.ExecuteNonQuery();
             con.Close();
             Content = new Usuarios();
         }
         #endregion
-        private void Eliminar(object sender, RoutedEventArgs e)
-        {
-
-        }
         #endregion
+        #region IMAGEN
+
+        
         byte[] data;
         private bool imagensubida = false;
         private void Subir(object sender, RoutedEventArgs e)
@@ -168,5 +189,6 @@ namespace eggstore.Views
             }
             imagensubida = true;
         }
+        #endregion
     }
 }

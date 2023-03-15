@@ -75,5 +75,26 @@ namespace eggstore.Views
             ventana.btnSubir.IsEnabled = true;
             ventana.btnModificar.Visibility = Visibility.Visible;
         }
+
+        private void Eliminar(object sender, RoutedEventArgs e)
+        {
+            int id = (int)((Button)sender).CommandParameter;
+            CRUDUsuarios ventana = new CRUDUsuarios();
+            ventana.IdUsuario = id;
+            ventana.Consultar();
+            frameUsuarios.Content = ventana;
+            ventana.Titulo.Text = "Eliminar Usuaurio";
+            ventana.tbNombres.IsEnabled = false;
+            ventana.tbApellidos.IsEnabled = false;
+            ventana.tbTelefono.IsEnabled = false;
+            ventana.tbEmail.IsEnabled = false;
+            ventana.tbSector.IsEnabled = false;
+            ventana.tbIdentificacion.IsEnabled = false;
+            ventana.cbPrivilegio.IsEnabled = false;
+            ventana.tbUsuario.IsEnabled = false;
+            ventana.tbContrasenia.IsEnabled = false;
+            ventana.btnSubir.IsEnabled = false;
+            ventana.btnEliminar.Visibility = Visibility.Visible;
+        }
     }
 }
