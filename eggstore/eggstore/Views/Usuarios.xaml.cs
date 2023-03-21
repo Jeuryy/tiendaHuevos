@@ -32,6 +32,7 @@ namespace eggstore.Views
         {
             CRUDUsuarios ventana = new CRUDUsuarios();
             frameUsuarios.Content = ventana;
+            Contenido.Visibility = Visibility.Hidden;
             ventana.btnCrear.Visibility = Visibility.Visible;
         }
 
@@ -42,6 +43,7 @@ namespace eggstore.Views
             ventana.IdUsuario = id;
             ventana.Consultar();
             frameUsuarios.Content = ventana;
+            Contenido.Visibility = Visibility.Hidden;
             ventana.Titulo.Text = "Consulta de Usuaurio";
             ventana.tbNombres.IsEnabled = false;
             ventana.tbApellidos.IsEnabled = false;
@@ -62,6 +64,7 @@ namespace eggstore.Views
             ventana.IdUsuario = id;
             ventana.Consultar();
             frameUsuarios.Content = ventana;
+            Contenido.Visibility = Visibility.Hidden;
             ventana.Titulo.Text = "Actualizar Usuaurio";
             ventana.tbNombres.IsEnabled = true;
             ventana.tbApellidos.IsEnabled = true;
@@ -83,6 +86,7 @@ namespace eggstore.Views
             ventana.IdUsuario = id;
             ventana.Consultar();
             frameUsuarios.Content = ventana;
+            Contenido.Visibility = Visibility.Hidden;
             ventana.Titulo.Text = "Eliminar Usuaurio";
             ventana.tbNombres.IsEnabled = false;
             ventana.tbApellidos.IsEnabled = false;

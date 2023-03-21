@@ -10,6 +10,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="none"
         AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
         Background="Transparent">
     <Window.Resources>
         <!--#region BTNTOGGLESTYLE -->
@@ -125,7 +126,8 @@
     </Window.Resources>
     <!--#region PROYECTO -->
     <Border CornerRadius="10"
-            Background="GhostWhite">
+            Opacity=".9"
+            Background="Transparent">
         <Grid Name="Principal"
               Background="Transparent">
             <!--#region HEADER -->
@@ -271,10 +273,6 @@
                   Width="925">
                 <Border CornerRadius="0,0,0,10"
                         Background="#FFFDE7"/>
-                <TextBlock Text="Jeuryy"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           FontSize="50"/>
                 <ContentControl Content="{Binding}"/>
             </Grid>
             <!--#endregion-->
