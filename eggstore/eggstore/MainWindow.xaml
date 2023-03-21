@@ -134,7 +134,7 @@
                   VerticalAlignment="Top" 
                   Background="Transparent">
                 <Border CornerRadius="10,10,0,0" 
-                        Background="#ff8c00"></Border>
+                        Background="#fac147"></Border>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
