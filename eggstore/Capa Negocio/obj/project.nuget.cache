@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "et6Eoq12ZHl40TJUnq0SPF501ChtSe+8DY1+P/KxPM8gbXAru9IlHe7gK+yTlpyjGImBSKBCi0Uxm0u4KgLv3Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\elmej\\OneDrive\\Documentos\\JEURY\\eggstore\\tiendaHuevos\\eggstore\\Capa Negocio\\Capa Negocio.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\elmej\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512"
+  ],
+  "logs": []
+}

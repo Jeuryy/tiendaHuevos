@@ -61,6 +61,8 @@ namespace eggstore {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
+            SplashScreen splashScreen = new SplashScreen("src/img/fried.png");
+            splashScreen.Show(true);
             eggstore.App app = new eggstore.App();
             app.InitializeComponent();
             app.Run();

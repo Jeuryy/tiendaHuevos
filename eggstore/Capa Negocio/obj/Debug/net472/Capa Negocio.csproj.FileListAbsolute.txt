@@ -1,0 +1,15 @@
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\obj\Debug\net472\Capa Negocio.csproj.AssemblyReference.cache
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\obj\Debug\net472\Capa Negocio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\obj\Debug\net472\Capa Negocio.AssemblyInfoInputs.cache
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\obj\Debug\net472\Capa Negocio.AssemblyInfo.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\obj\Debug\net472\Capa Negocio.csproj.CoreCompileInputs.cache
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\bin\Debug\net472\Capa Negocio.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\bin\Debug\net472\Capa Negocio.pdb
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\bin\Debug\net472\System.Data.SqlClient.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\bin\Debug\net472\Capa de datos.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\bin\Debug\net472\Capa Entidad.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\bin\Debug\net472\Capa de datos.pdb
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\bin\Debug\net472\Capa Entidad.pdb
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\obj\Debug\net472\Capa Negocio.csproj.CopyComplete
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\obj\Debug\net472\Capa Negocio.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Negocio\obj\Debug\net472\Capa Negocio.pdb

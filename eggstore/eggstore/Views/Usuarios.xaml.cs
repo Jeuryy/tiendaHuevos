@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using Capa_Negocio;
 
 namespace eggstore.Views
 {
@@ -11,23 +12,16 @@ namespace eggstore.Views
     /// </summary>
     public partial class Usuarios : UserControl
     {
+        readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
+        #region INICIAL
         public Usuarios()
         {
             InitializeComponent();
-            CargarDatos();
+            Buscar("");
         }
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString);
-        void CargarDatos()
-        {
-            con.Open();
-            SqlCommand cmd = new SqlCommand("Select IdUsuario, Nombres, Apellidos, Telefono, Correo, NombrePrivilegio from Usuarios inner join Privilegios on Usuarios.Privilegio=Privilegios.IdPrivilegio order by IdUsuario ASC", con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            gridDatos.ItemsSource = dt.DefaultView;
-            con.Close();
-        }
+        #endregion
 
+        #region AGREGAR
         private void Agregar(object sender, RoutedEventArgs e)
         {
             CRUDUsuarios ventana = new CRUDUsuarios();
@@ -35,7 +29,9 @@ namespace eggstore.Views
             Contenido.Visibility = Visibility.Hidden;
             ventana.btnCrear.Visibility = Visibility.Visible;
         }
+        #endregion
 
+        #region CONSULTAR
         private void Consultar(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
@@ -56,7 +52,9 @@ namespace eggstore.Views
             ventana.tbContrasenia.IsEnabled = false;
             ventana.btnSubir.IsEnabled = false;
         }
+        #endregion
 
+        #region ACTUALIZAR
         private void Actualizar(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
@@ -78,7 +76,9 @@ namespace eggstore.Views
             ventana.btnSubir.IsEnabled = true;
             ventana.btnModificar.Visibility = Visibility.Visible;
         }
+        #endregion
 
+        #region ELIMINAR
         private void Eliminar(object sender, RoutedEventArgs e)
         {
             int id = (int)((Button)sender).CommandParameter;
@@ -100,5 +100,18 @@ namespace eggstore.Views
             ventana.btnSubir.IsEnabled = false;
             ventana.btnEliminar.Visibility = Visibility.Visible;
         }
+        #endregion
+
+        #region BUSCANDO
+
+        public void Buscar(string buscar)
+        {
+            gridDatos.ItemsSource = objeto_CN_Usuarios.Buscar(buscar).DefaultView;
+        }
+        private void Buscando(object sender, TextChangedEventArgs e)
+        {
+            Buscar(tbBuscar.Text);
+        }
+        #endregion
     }
 }

@@ -16,7 +16,7 @@ namespace eggstore
 
         private void TBShow(object sender, RoutedEventArgs e)
         {
-            gridContent.Opacity = 0.5;
+            gridContent.Opacity = 0.8;
         }
 
         private void TBHide(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace eggstore
 
         private void Cerrar(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void Usuarios_Click(object sender, RoutedEventArgs e)

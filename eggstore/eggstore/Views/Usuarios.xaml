@@ -269,21 +269,10 @@
                        BorderBrush="#FFC107"
                      Grid.Column="1"
                      Grid.Row="2"
-                     FontSize="20" Grid.ColumnSpan="2" Margin="221,0,0,0"/>
-                <!--#endregion-->
-                <!--#region BTN BUSCAR -->
-                <Button Style="{DynamicResource BTNBUSCARSTYLE}" Grid.Column="3"
-                    Grid.Row="2"
-                    Background="#fac867"
-                    Margin="10,0,0,0"
-                    Cursor="Hand"
-                    Width="100"
-                    Name="btnBuscar"
-                    HorizontalAlignment="Left">
-                    <TextBlock Text="Buscar"
-                           Foreground="#FFF"
-                           FontSize="15"/>
-                </Button>
+                     FontSize="20" Grid.ColumnSpan="2" 
+                       Margin="221,0,0,0"
+                         TextChanged="Buscando"
+                         x:Name="tbBuscar"/>
                 <!--#endregion-->
                 <!--#region BTN CREAR USUARIO -->
                 <Button Background="#fac147"
@@ -300,6 +289,7 @@
                            FontSize="15"/>
 
                 </Button>
+                <!--#endregion-->
                 <!--#endregion-->
                 <!--#endregion-->
                 <!--#region DATAGRID -->

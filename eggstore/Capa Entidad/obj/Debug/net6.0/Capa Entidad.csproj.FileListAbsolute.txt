@@ -1,0 +1,12 @@
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\bin\Debug\net6.0\Capa Entidad.deps.json
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\bin\Debug\net6.0\Capa Entidad.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\bin\Debug\net6.0\Capa Entidad.pdb
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\Capa Entidad.csproj.AssemblyReference.cache
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\Capa Entidad.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\Capa Entidad.AssemblyInfoInputs.cache
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\Capa Entidad.AssemblyInfo.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\Capa Entidad.csproj.CoreCompileInputs.cache
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\Capa Entidad.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\refint\Capa Entidad.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\Capa Entidad.pdb
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\Capa Entidad\obj\Debug\net6.0\ref\Capa Entidad.dll

@@ -17,6 +17,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Capa_Entidad;
+using Capa_Negocio;
+using System.Drawing;
+using Image = System.Windows.Controls.Image;
 
 namespace eggstore.Views
 {
@@ -25,151 +29,160 @@ namespace eggstore.Views
     /// </summary>
     public partial class CRUDUsuarios : Page
     {
+        readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
+        readonly CE_Usuarios objeto_CE_Usuarios = new CE_Usuarios();
+        readonly CN_Privilegios objeto_CN_Privilegios = new CN_Privilegios();
+
+        #region INICIAL
         public CRUDUsuarios()
         {
             InitializeComponent();
             CargarCB();
         }
-
+        #endregion
+        #region REGRESAR
         private void Regresar(object sender, RoutedEventArgs e)
         {
             Content = new Usuarios();
         }
-        readonly SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ConnectionString);
+        #endregion
+        #region CARGARPRIVILEGIOS
         void CargarCB()
         {
-            con.Open();
-            SqlCommand cmd = new SqlCommand("Select NombrePrivilegio from Privilegios", con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            List<string> privilegios = objeto_CN_Privilegios.ListarPrivilegios();
+            for(int i=0; i<privilegios.Count; i++)
             {
-                cbPrivilegio.Items.Add(dr["NombrePrivilegio"].ToString());
+                cbPrivilegio.Items.Add(privilegios[i]);
             }
-            con.Close();
         }
-        #region CRUD
-        public int IdUsuario;
-        #region CREATE
-        private void Crear(object sender, RoutedEventArgs e)
+        #endregion
+        #region VALIDARCAMPOSVACIOS
+        public bool CamposLlenos()
         {
-            if (tbNombres.Text==""||tbApellidos.Text== ""||tbTelefono.Text==""||tbIdentificacion.Text==""||tbEmail.Text==""||tbSector.Text==""||tbUsuario.Text==""||tbContrasenia.Text==""||cbPrivilegio.Text=="")
+            if (tbNombres.Text == "" || tbApellidos.Text == "" || tbTelefono.Text == "" || tbIdentificacion.Text == "" || tbEmail.Text == "" || tbSector.Text == "" || tbUsuario.Text == "" || tbContrasenia.Text == "")
             {
-                MessageBox.Show("Los campos no pueden quedar vacíos");
+                return false;
             }
             else
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("Select IdPrivilegio from privilegios where NombrePrivilegio='" + cbPrivilegio.Text+"'",con);
-                object valor = cmd.ExecuteScalar();
-                int privilegio = (int)valor;
-                string patron = "eggstore";
-                if(imagensubida == true)
-                {
-                    SqlCommand com = new SqlCommand("INSERT INTO usuarios (nombres, apellidos, telefono, identificacion, correo, sector, privilegio, img, usuario, contrasenia) values(@nombres, @apellidos, @telefono, @identificacion, @correo, @sector, @privilegio, @img, @usuario, (EncryptByPassPhrase('" + patron + "', '" + tbContrasenia.Text + "')))", con);
-                    com.Parameters.Add("@nombres", SqlDbType.VarChar).Value = tbNombres.Text;
-                    com.Parameters.Add("@apellidos", SqlDbType.VarChar).Value = tbApellidos.Text;
-                    com.Parameters.Add("@telefono", SqlDbType.Float).Value = tbTelefono.Text;
-                    com.Parameters.Add("@identificacion", SqlDbType.Float).Value = tbIdentificacion.Text;
-                    com.Parameters.Add("@correo", SqlDbType.VarChar).Value = tbEmail.Text;
-                    com.Parameters.Add("@sector", SqlDbType.VarChar).Value = tbSector.Text;
-                    com.Parameters.Add("@privilegio", SqlDbType.Int).Value = privilegio;
-                    com.Parameters.Add("@usuario", SqlDbType.VarChar).Value = tbUsuario.Text;
-                    com.Parameters.Add("@img", SqlDbType.VarBinary).Value = data;
-                    com.ExecuteNonQuery();
-                    Content = new Usuarios();
-                }
-                else
-                {
-                    MessageBox.Show("Inserte una foto de perfil para el usuario");
-                }
-                con.Close();
+                return true;
             }
+        }
+        #endregion
 
+        #region CRUD
+
+        public int IdUsuario;
+        public string Patron = "eggstore";
+
+        #region CREATE
+        private void Crear(object sender, RoutedEventArgs e)
+        { 
+            if(CamposLlenos()==true && tbContrasenia.Text != "")
+            {
+         
+                int privilegio = objeto_CN_Privilegios.IdPrivilegio(cbPrivilegio.Text);
+
+                objeto_CE_Usuarios.Nombres = tbNombres.Text;
+                objeto_CE_Usuarios.Apellidos = tbApellidos.Text;
+                objeto_CE_Usuarios.Telefono = float.Parse(tbTelefono.Text);
+                objeto_CE_Usuarios.Identificacion = float.Parse(tbIdentificacion.Text);
+                objeto_CE_Usuarios.Correo = tbEmail.Text;
+                objeto_CE_Usuarios.Sector = tbSector.Text;
+                objeto_CE_Usuarios.Privilegio = privilegio;
+                objeto_CE_Usuarios.Img = data;
+                objeto_CE_Usuarios.Usuario = tbUsuario.Text;
+                objeto_CE_Usuarios.Contrasenia = tbContrasenia.Text;
+                objeto_CE_Usuarios.Patron = Patron;
+
+                objeto_CN_Usuarios.Insertar(objeto_CE_Usuarios);
+
+                Content = new Usuarios();
+            }
+            else
+            {
+                MessageBox.Show("Los campos no pueden quedar vacíos");
+            }
         }
         #endregion
         #region READ
         public void Consultar()
         {
-            con.Open();
-            SqlCommand com = new SqlCommand("select * from Usuarios inner join Privilegios on Usuarios.Privilegio=Privilegios.IdPrivilegio where IdUsuario="+IdUsuario, con);
-            SqlDataReader rdr = com.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            rdr.Read();
-            this.tbNombres.Text = rdr["Nombres"].ToString();
-            this.tbApellidos.Text = rdr["Apellidos"].ToString();
-            this.tbTelefono.Text = rdr["Telefono"].ToString();
-            this.tbEmail.Text = rdr["Correo"].ToString();
-            this.tbSector.Text = rdr["Sector"].ToString();
-            this.tbIdentificacion.Text = rdr["Identificacion"].ToString();
-            this.cbPrivilegio.SelectedItem = rdr["NombrePrivilegio"];
-            this.tbUsuario.Text = rdr["usuario"].ToString();
-            rdr.Close();
+            var a = objeto_CN_Usuarios.Consultar(IdUsuario);
+            tbNombres.Text = a.Nombres.ToString();
+            tbApellidos.Text = a.Apellidos.ToString();
+            tbTelefono.Text = a.Telefono.ToString();
+            tbIdentificacion.Text = a.Identificacion.ToString();
+            tbEmail.Text = a.Correo.ToString();
+            tbSector.Text = a.Sector.ToString();
 
-            //IMAGEN
-            DataSet ds = new DataSet();
-            SqlDataAdapter sqda = new SqlDataAdapter("Select img from usuarios where IdUsuario='"+IdUsuario+"'",con);
-            sqda.Fill(ds);
-            byte[] data = (byte[])ds.Tables[0].Rows[0][0];
-            MemoryStream strm = new MemoryStream();
-            strm.Write(data,0,data.Length);
-            strm.Position = 0;
-            System.Drawing.Image img = System.Drawing.Image.FromStream(strm);
-            BitmapImage bi = new BitmapImage();
-            bi.BeginInit();
-            MemoryStream ms = new MemoryStream();
-            img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-            ms.Seek(0, SeekOrigin.Begin);
-            bi.StreamSource = ms;
-            bi.EndInit();
-            imagen.Source = bi;
-            //IMAGEN
-            con.Close();
+
+            var b = objeto_CN_Privilegios.NombrePrivilegio(a.Privilegio);
+            cbPrivilegio.Text = b.NombrePrivilegio.ToString();
+
+            ImageSourceConverter imgs = new ImageSourceConverter();
+            imagen.Source = (ImageSource)imgs.ConvertFrom(a.Img);
+            tbUsuario.Text = a.Usuario.ToString();
         }
         #endregion
         #region UPDATE
         private void Modificar(object sender, RoutedEventArgs e)
         {
-            con.Open();
-            SqlCommand com = new SqlCommand("Select IdPrivilegio from Privilegios where NombrePrivilegio='"+cbPrivilegio.Text+"'", con);
-            object valor = com.ExecuteScalar();
-            int privilegio = (int)valor;
-            string patron = "eggstore";
-            if (tbNombres.Text == "" || tbApellidos.Text == "" || tbTelefono.Text == "" || tbIdentificacion.Text == "" || tbEmail.Text == "" || tbSector.Text == "" || tbUsuario.Text == "" || cbPrivilegio.Text == "")
+            if (CamposLlenos() == true)
             {
-                MessageBox.Show("Los campos no pueden quedar vacíos");
+                int privilegio = objeto_CN_Privilegios.IdPrivilegio(cbPrivilegio.Text);
+                
+                objeto_CE_Usuarios.IdUsuario = IdUsuario;
+                objeto_CE_Usuarios.Nombres = tbNombres.Text;
+                objeto_CE_Usuarios.Apellidos = tbApellidos.Text;
+                objeto_CE_Usuarios.Telefono = float.Parse(tbTelefono.Text);
+                objeto_CE_Usuarios.Identificacion = float.Parse(tbIdentificacion.Text);
+                objeto_CE_Usuarios.Correo = tbEmail.Text;
+                objeto_CE_Usuarios.Sector = tbSector.Text;
+                objeto_CE_Usuarios.Privilegio = privilegio;
+                objeto_CE_Usuarios.Usuario = tbUsuario.Text;
+
+                objeto_CN_Usuarios.ActualizarDatos(objeto_CE_Usuarios);
+
+                Content = new Usuarios();
             }
             else
             {
-                //Contrasenia=(EncryptByPassPhrase('" + patron + "','" + tbContrasenia.Text + "'))
-                SqlCommand cmd = new SqlCommand("Update Usuarios set Nombres='" + tbNombres.Text + "',Apellidos='" + tbApellidos.Text + "',Telefono='" + float.Parse(tbTelefono.Text) + "',Correo='" + tbEmail.Text + "',Identificacion='" + float.Parse(tbIdentificacion.Text) + "',Sector='" + tbSector.Text + "',Privilegio='" + privilegio + "',Usuario='" + tbUsuario.Text + "'where IdUsuario="+IdUsuario+"", con);
-                cmd.ExecuteNonQuery();
-                if (imagensubida == true)
-                {
-                    SqlCommand img = new SqlCommand("Update Usuarios set img=@img where IdUsuario='" + IdUsuario + "'", con);
-                    img.Parameters.AddWithValue("@img", SqlDbType.VarBinary).Value = data;
-                    img.ExecuteNonQuery();
-                }
-                
+                MessageBox.Show("Los campos no pueden quedar vacíos");
             }
-            if (tbContrasenia.Text != "")
+
+            if(tbContrasenia.Text != "")
             {
-                SqlCommand cmd = new SqlCommand("Update Usuarios set Contrasenia=(EncryptByPassPhrase('" + patron +"','" + tbContrasenia.Text +"')) where IdUsuario='"+IdUsuario+"'", con);
-                cmd.ExecuteNonQuery();
+                objeto_CE_Usuarios.IdUsuario = IdUsuario;
+                objeto_CE_Usuarios.Contrasenia = tbContrasenia.Text;
+                objeto_CE_Usuarios.Patron = Patron;
+
+                objeto_CN_Usuarios.ActualizarPass(objeto_CE_Usuarios);
+                Content = new Usuarios();
             }
-            con.Close();
-            Content = new Usuarios();
+
+            if(imagensubida == true)
+            {
+                objeto_CE_Usuarios.IdUsuario = IdUsuario;
+                objeto_CE_Usuarios.Img = data;
+
+                objeto_CN_Usuarios.ActualizarIMG(objeto_CE_Usuarios);
+                Content = new Usuarios();
+            }
         }
         #endregion
         #region DELETE
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-            con.Open();
-            SqlCommand cmd = new SqlCommand("Delete from Usuarios Where IdUsuario="+IdUsuario+"", con);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            objeto_CE_Usuarios.IdUsuario = IdUsuario;
+
+            objeto_CN_Usuarios.Eliminar(objeto_CE_Usuarios);
+
             Content = new Usuarios();
         }
         #endregion
         #endregion
+
         #region IMAGEN
 
         
