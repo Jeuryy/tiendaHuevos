@@ -403,6 +403,7 @@
                             <Button Style="{DynamicResource BTNSTYLE}"
                                 x:Name="btnProducto"
                                     Height="70"
+                                    Click="Productos_Click"
                                     Width="200"
                                     HorizontalAlignment="Left"
                                     Cursor="Hand"

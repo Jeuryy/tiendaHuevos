@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="eggstore.Views.Usuarios"
+﻿<UserControl x:Class="eggstore.Views.Productos"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -210,14 +210,14 @@
                     <Setter Property="BorderBrush"  Value="Transparent"/>
                     <Setter Property="Foreground"  Value="White"/>
                 </Trigger>
-            </Style.Triggers>    
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <!--#endregion-->
         <!--#region CONTENIDO -->
     <Border CornerRadius="10"
             Background="Transparent">
-        <Grid Name="gridUsuarios">
+        <Grid Name="gridProductos">
             <Grid x:Name="Contenido"
                     Grid.Row="0"
                     Grid.Column="0"
@@ -247,7 +247,7 @@
                 <!--#region TITULO -->
                 <TextBlock
                        Grid.ColumnSpan="2"
-                       Text="Mantenimiento de Usuarios"
+                       Text="Mantenimiento de Productos"
                        Foreground="Black"
                        FontSize="30"
                        HorizontalAlignment="Left"
@@ -255,7 +255,7 @@
                 <!--#endregion-->
                 <!--#region BUSCADOR -->
                 <!--#region TEXTO -->
-                <TextBlock Text="Buscar usuarios"
+                <TextBlock Text="Buscar producto"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Grid.Column="1"
@@ -270,28 +270,27 @@
                      Grid.Column="1"
                      Grid.Row="2"
                      FontSize="20" Grid.ColumnSpan="2" 
-                       Margin="221,0,0,0"
+                       Margin="225,0,0,0"
                          TextChanged="Buscando"
                          x:Name="tbBuscar"/>
                 <!--#endregion-->
-                <!--#region BTN CREAR USUARIO -->
+                <!--#region BTN CREAR PRODUCTO -->
                 <Button Background="#fac147"
                     BorderBrush="#fac217"
                     Grid.Column="4"
                     Grid.Row="2"
                     Cursor="Hand"
                     Width="150"
-                    x:Name="btnCrearUsuario"
-                    Click="Agregar"
+                    x:Name="btnCrearProducto"
+                    Click="Agregar_Producto"
                     Style="{DynamicResource BTNBUSCARSTYLE}" Margin="35,0,36,0">
-                    <TextBlock Text="Agregar Usuario"
+                    <TextBlock Text="Agregar Producto"
                            Foreground="#FFF"
                            FontSize="15"/>
 
                 </Button>
                 <!--#endregion-->
                 <!--#endregion-->
-              
                 <!--#region DATAGRID -->
                 <DataGrid Style="{DynamicResource DataGridStyle1}" Grid.Row="4"
                       Grid.Column="1"
@@ -325,7 +324,7 @@
                                             Foreground="#000"
                                             Cursor="Hand"
                                             Click="Consultar"
-                                            CommandParameter="{Binding IdUsuario}"
+                                            CommandParameter="{Binding IdArticulo}"
                                             Style="{DynamicResource BTNBUSCARSTYLE}"/>
                                         <Button Content="Modificar"
                                             Background="#fac147"
@@ -334,8 +333,9 @@
                                             BorderBrush="Transparent"
                                             Foreground="#000"
                                             Cursor="Hand"
-                                            CommandParameter="{Binding IdUsuario}"
-                                            Style="{DynamicResource BTNBUSCARSTYLE}" Click="Actualizar"/>
+                                            CommandParameter="{Binding IdArticulo}"
+                                            Style="{DynamicResource BTNBUSCARSTYLE}" 
+                                            Click="Actualizar"/>
                                         <Button Content="Eliminar"
                                             Background="#fac147"
                                             x:Name="btnEliminar"
@@ -343,48 +343,44 @@
                                             BorderBrush="Transparent"
                                             Foreground="#000"
                                             Cursor="Hand"
-                                            CommandParameter="{Binding IdUsuario}"
-                                            Style="{DynamicResource BTNBUSCARSTYLE}" Click="Eliminar"/>
+                                            CommandParameter="{Binding IdArticulo}"
+                                            Style="{DynamicResource BTNBUSCARSTYLE}" 
+                                            Click="Eliminar"/>
                                     </DockPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="ID"
+                        <DataGridTextColumn Header="Código"
                                         Width="50"
                                         Foreground="#000"
                                         FontSize="12"
-                                        Binding="{Binding IdUsuario}"/>
+                                        Binding="{Binding Codigo}"/>
                         <DataGridTextColumn Header="Nombre"
+                                        Width="150"
+                                        Foreground="#000"
+                                        FontSize="12"
+                                        Binding="{Binding Nombre}"/>
+                        <DataGridTextColumn Header="Cantidad"
                                         Width="100"
                                         Foreground="#000"
                                         FontSize="12"
-                                        Binding="{Binding Nombres}"/>
-                        <DataGridTextColumn Header="Apellidos"
+                                        Binding="{Binding Cantidad}"/>
+                        <DataGridTextColumn Header="Precio Unitario"
                                         Width="100"
                                         Foreground="#000"
                                         FontSize="12"
-                                        Binding="{Binding Apellidos}"/>
-                        <DataGridTextColumn Header="Teléfono"
-                                        Width="100"
-                                        Foreground="#000"
-                                        FontSize="12"
-                                        Binding="{Binding Telefono}"/>
-                        <DataGridTextColumn Header="Email"
+                                        Binding="{Binding Precio}"/>
+                        <DataGridTextColumn Header="Descripcion"
                                         Width="*"
                                         Foreground="#000"
                                         FontSize="12"
-                                        Binding="{Binding Correo}"/>
-                        <DataGridTextColumn Header="Privilegio"
-                                        Width="*"
-                                        Foreground="#000"
-                                        FontSize="12"
-                                        Binding="{Binding NombrePrivilegio}"/>
+                                        Binding="{Binding Descripcion}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--endregion-->
             </Grid>
-            <!--#region FRAMEUSUARIOS -->
-            <Frame x:Name="frameUsuarios"
+            <!--#region FRAMEPRODUCTOS -->
+            <Frame x:Name="frameProductos"
                    Grid.Column="0"
                    Grid.Row="0"
                    Grid.RowSpan="8"

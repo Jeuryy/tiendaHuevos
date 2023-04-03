@@ -51,5 +51,10 @@ namespace eggstore
                 DragMove();
             }
         }
+
+        private void Productos_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Productos();
+        }
     }
 }
