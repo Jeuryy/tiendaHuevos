@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Capa_Entidad;
 using Capa_Negocio;
+using Microsoft.Win32;
 
 namespace eggstore.Views
 {
@@ -22,8 +25,11 @@ namespace eggstore.Views
     public partial class CRUDProductos : Page
     {
         public int IdProducto;
+        public string Patron = "eggstore";
         CN_Grupos objeto_CN_Grupos = new CN_Grupos();
         CN_Productos objeto_CN_Productos = new CN_Productos();
+        CE_Productos objeto_CE_Productos = new CE_Productos();
+        
         #region INICIAL
         public CRUDProductos()
         {
@@ -51,12 +57,49 @@ namespace eggstore.Views
 
         #endregion
 
+        #region VALIDAR GRUPOS
+        public bool CamposLlenos()
+        {
+            if(tbNombre.Text=="" || tbCodigo.Text=="" || cbGrupo.Text=="" || tbPrecio.Text=="" || tbCantidad.Text=="" || tbUnidadMedida.Text=="" || tbDescripcion.Text == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        #endregion
+
         #region C R U D
 
         #region CREATE
         private void Crear(object sender, RoutedEventArgs e)
         {
+               if (CamposLlenos() == true)
+            {
+                int idgrupo = objeto_CN_Grupos.IdGrupo(cbGrupo.Text);
 
+                objeto_CE_Productos.Nombre = tbNombre.Text;
+                objeto_CE_Productos.Codigo = tbCodigo.Text;
+                objeto_CE_Productos.Precio = Double.Parse(tbPrecio.Text);
+                objeto_CE_Productos.Cantidad = Double.Parse(tbCantidad.Text);
+                objeto_CE_Productos.Activo = (bool)tbActivo.IsChecked;
+                objeto_CE_Productos.UnidadMedida = tbUnidadMedida.Text;
+                objeto_CE_Productos.Img = data;
+                objeto_CE_Productos.Descripcion = tbDescripcion.Text;
+                objeto_CE_Productos.Grupo = idgrupo;
+
+
+                objeto_CN_Productos.Insertar(objeto_CE_Productos);
+
+                Content = new Productos();
+            }
+            else
+            {
+                MessageBox.Show("Los campos no pueden quedar vacíos.");
+            }
         }
 
         #endregion
@@ -83,7 +126,9 @@ namespace eggstore.Views
         #region DELETE
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-
+            objeto_CE_Productos.IdArticulo = IdProducto;
+            objeto_CN_Productos.Eliminar(objeto_CE_Productos);
+            Content = new Productos();
         }
 
         #endregion
@@ -92,15 +137,59 @@ namespace eggstore.Views
         private void Modificar(object sender, RoutedEventArgs e)
         {
 
+            if (CamposLlenos() == true)
+            {
+                int idgrupo = objeto_CN_Grupos.IdGrupo(cbGrupo.Text);
+
+                objeto_CE_Productos.IdArticulo = IdProducto;
+                objeto_CE_Productos.Nombre = tbNombre.Text;
+                objeto_CE_Productos.Codigo = tbCodigo.Text;
+                objeto_CE_Productos.Precio = Double.Parse(tbPrecio.Text);
+                objeto_CE_Productos.Cantidad = Double.Parse(tbCantidad.Text);
+                objeto_CE_Productos.Activo = (bool)tbActivo.IsChecked;
+                objeto_CE_Productos.UnidadMedida = tbUnidadMedida.Text;
+                objeto_CE_Productos.Descripcion = tbDescripcion.Text;
+                objeto_CE_Productos.Grupo = idgrupo;
+
+
+                objeto_CN_Productos.ActualizarDatos(objeto_CE_Productos);
+
+                Content = new Productos();
+            }
+            else
+            {
+                MessageBox.Show("Los campos no pueden quedar vacíos.");
+            }
+
+            if(imagensubida == true)
+            {
+                objeto_CE_Productos.IdArticulo = IdProducto;
+                objeto_CE_Productos.Img = data;
+
+                objeto_CN_Productos.ActualizarIMG(objeto_CE_Productos);
+                Content = new Productos();
+            }
         }
         #endregion
 
         #endregion
 
         #region SUBIR IMAGEN
+        byte[] data;
+        private bool imagensubida = false;
         private void Subir(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == true)
+            {
+                FileStream fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
+                data = new byte[fs.Length];
+                fs.Read(data, 0, Convert.ToInt32(fs.Length));
+                fs.Close();
+                ImageSourceConverter imgs = new ImageSourceConverter();
+                imagen.SetValue(Image.SourceProperty, imgs.ConvertFromString(ofd.FileName.ToString()));
+            }
+            imagensubida = true;
         }
         #endregion
     }

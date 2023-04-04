@@ -27,5 +27,11 @@ namespace Capa_Negocio
         }
         #endregion
 
+        #region IdGrupo
+        public int IdGrupo(string nombre)
+        {
+            return cD_Grupos.IdGrupo(nombre);
+        }
+        #endregion
     }
 }

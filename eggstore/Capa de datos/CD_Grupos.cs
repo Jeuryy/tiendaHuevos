@@ -36,7 +36,6 @@ namespace Capa_de_datos
         }
         #endregion
 
-
         #region NOMBREGRUPO
         public CE_Grupos Nombre(int IdGrupo)
         {
@@ -52,6 +51,24 @@ namespace Capa_de_datos
             cE_Grupos.Nombre = Convert.ToString(row[0]);
             
             return cE_Grupos;
+        }
+        #endregion
+
+        #region IdGrupo
+        public int IdGrupo (string Nombre)
+        {
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "SP_G_IdGrupo",
+                CommandType = CommandType.StoredProcedure
+            };
+            com.Parameters.AddWithValue("@Nombre", Nombre);
+            object valor = com.ExecuteScalar();
+            int idgrupo = (int)valor;
+            con.CerrarConexion();
+
+            return idgrupo;
         }
         #endregion
     }

@@ -62,6 +62,89 @@ namespace Capa_de_datos
         }
         #endregion
 
+        #region INSERTAR
+        public void CD_Insertar(CE_Productos productos)
+        {
+
+        SqlCommand com = new SqlCommand()
+        {
+            Connection = con.AbrirConexion(),
+            CommandText = "SP_A_Insertar",
+            CommandType = CommandType.StoredProcedure
+        };
+        com.Parameters.AddWithValue("@Nombre", productos.Nombre);
+        com.Parameters.AddWithValue("@Grupo", productos.Grupo);
+        com.Parameters.AddWithValue("@Codigo", productos.Codigo);
+        com.Parameters.AddWithValue("@Precio", productos.Precio);
+        com.Parameters.AddWithValue("@Cantidad", productos.Cantidad);
+        com.Parameters.AddWithValue("@Activo", productos.Activo);
+        com.Parameters.AddWithValue("@UnidadMedida", productos.UnidadMedida);
+        com.Parameters.AddWithValue("@Img", productos.Img);
+        com.Parameters.AddWithValue("@Descripcion", productos.Descripcion);
+        com.ExecuteNonQuery();
+        com.Parameters.Clear();
+        con.CerrarConexion();
+        }
+        #endregion
+
+        #region ELIMINAR
+        public void CD_Eliminar(CE_Productos productos)
+        {
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "SP_A_Eliminar",
+                CommandType = CommandType.StoredProcedure
+            };
+            com.Parameters.AddWithValue("@IdArticulo", productos.IdArticulo);
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+        #endregion
+
+        #region ActualizarDatos
+        public void CD_Actualizar(CE_Productos productos)
+        {
+
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "SP_A_Actualizar",
+                CommandType = CommandType.StoredProcedure
+            };
+            com.Parameters.AddWithValue("@IdArticulo", productos.IdArticulo);
+            com.Parameters.AddWithValue("@Nombre", productos.Nombre);
+            com.Parameters.AddWithValue("@Grupo", productos.Grupo);
+            com.Parameters.AddWithValue("@Codigo", productos.Codigo);
+            com.Parameters.AddWithValue("@Precio", productos.Precio);
+            com.Parameters.AddWithValue("@Cantidad", productos.Cantidad);
+            com.Parameters.AddWithValue("@Activo", productos.Activo);
+            com.Parameters.AddWithValue("@UnidadMedida", productos.UnidadMedida);
+            com.Parameters.AddWithValue("@Descripcion", productos.Descripcion);
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+        #endregion
+
+        #region ActualizarIMG
+        public void CD_ActualizarIMG(CE_Productos productos)
+        {
+
+            SqlCommand com = new SqlCommand()
+            {
+                Connection = con.AbrirConexion(),
+                CommandText = "SP_A_ActualizarIMG",
+                CommandType = CommandType.StoredProcedure
+            };
+            com.Parameters.AddWithValue("@IdArticulo", productos.IdArticulo);
+            com.Parameters.AddWithValue("@Img", productos.Img);
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+        #endregion
 
         #endregion
     }

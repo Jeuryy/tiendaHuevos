@@ -32,6 +32,34 @@ namespace Capa_Negocio
         }
         #endregion
 
+        #region INSERTAR
+        public void Insertar(CE_Productos productos)
+        {
+            objProductos.CD_Insertar(productos);
+        }
+        #endregion
+
+        #region ELIMINAR
+        public void Eliminar(CE_Productos cE_Productos)
+        {
+            objProductos.CD_Eliminar(cE_Productos);
+        }
+        #endregion
+
+        #region ActualizarDatos
+        public void ActualizarDatos(CE_Productos productos)
+        {
+            objProductos.CD_Actualizar(productos);
+        }
+        #endregion
+
+        #region ActualizarIMG
+        public void ActualizarIMG(CE_Productos productos)
+        {
+            objProductos.CD_ActualizarIMG(productos);
+        }
+        #endregion
+
         #endregion
     }
 }
