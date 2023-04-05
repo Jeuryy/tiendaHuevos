@@ -80,24 +80,31 @@ namespace eggstore.Views
         { 
             if(CamposLlenos()==true && tbContrasenia.Text != "")
             {
-         
-                int privilegio = objeto_CN_Privilegios.IdPrivilegio(cbPrivilegio.Text);
+                try
+                {
+                    int privilegio = objeto_CN_Privilegios.IdPrivilegio(cbPrivilegio.Text);
 
-                objeto_CE_Usuarios.Nombres = tbNombres.Text;
-                objeto_CE_Usuarios.Apellidos = tbApellidos.Text;
-                objeto_CE_Usuarios.Telefono = float.Parse(tbTelefono.Text);
-                objeto_CE_Usuarios.Identificacion = float.Parse(tbIdentificacion.Text);
-                objeto_CE_Usuarios.Correo = tbEmail.Text;
-                objeto_CE_Usuarios.Sector = tbSector.Text;
-                objeto_CE_Usuarios.Privilegio = privilegio;
-                objeto_CE_Usuarios.Img = data;
-                objeto_CE_Usuarios.Usuario = tbUsuario.Text;
-                objeto_CE_Usuarios.Contrasenia = tbContrasenia.Text;
-                objeto_CE_Usuarios.Patron = Patron;
+                    objeto_CE_Usuarios.Nombres = tbNombres.Text;
+                    objeto_CE_Usuarios.Apellidos = tbApellidos.Text;
+                    objeto_CE_Usuarios.Telefono = float.Parse(tbTelefono.Text);
+                    objeto_CE_Usuarios.Identificacion = float.Parse(tbIdentificacion.Text);
+                    objeto_CE_Usuarios.Correo = tbEmail.Text;
+                    objeto_CE_Usuarios.Sector = tbSector.Text;
+                    objeto_CE_Usuarios.Privilegio = privilegio;
+                    objeto_CE_Usuarios.Img = data;
+                    objeto_CE_Usuarios.Usuario = tbUsuario.Text;
+                    objeto_CE_Usuarios.Contrasenia = tbContrasenia.Text;
+                    objeto_CE_Usuarios.Patron = Patron;
 
-                objeto_CN_Usuarios.Insertar(objeto_CE_Usuarios);
+                    objeto_CN_Usuarios.Insertar(objeto_CE_Usuarios);
 
-                Content = new Usuarios();
+                    Content = new Usuarios();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)");
+                }
+
             }
             else
             {
@@ -130,7 +137,9 @@ namespace eggstore.Views
         {
             if (CamposLlenos() == true)
             {
-                int privilegio = objeto_CN_Privilegios.IdPrivilegio(cbPrivilegio.Text);
+                try
+                {
+                    int privilegio = objeto_CN_Privilegios.IdPrivilegio(cbPrivilegio.Text);
                 
                 objeto_CE_Usuarios.IdUsuario = IdUsuario;
                 objeto_CE_Usuarios.Nombres = tbNombres.Text;
@@ -145,6 +154,11 @@ namespace eggstore.Views
                 objeto_CN_Usuarios.ActualizarDatos(objeto_CE_Usuarios);
 
                 Content = new Usuarios();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numerico)");
+                }
             }
             else
             {

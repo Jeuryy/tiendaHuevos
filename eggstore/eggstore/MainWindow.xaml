@@ -178,6 +178,7 @@
                     <!--#region MI CUENTA -->
                     <Button Style="{DynamicResource BTNSTYLE}"
                             x:Name="btnCuenta" Grid.Column="1"
+                            Click="MiCuenta"
                             Background="Transparent"
                             BorderBrush="Transparent"
                             FontSize="15"
@@ -205,6 +206,7 @@
                     <!--#region INFO -->
                     <Button Style="{DynamicResource BTNSTYLE}"
                         x:Name="btnInfo"
+                            Click="AcercaDe"
                             Grid.Column="1"
                             Background="Transparent"
                             BorderBrush="Transparent"
@@ -344,6 +346,7 @@
                         <ListViewItem Height="70">
                             <Button Style="{DynamicResource BTNSTYLE}"
                                 x:Name="btnInicio"
+                                    Click="Dashboard"
                                     Height="70"
                                     Width="200"
                                     HorizontalAlignment="Left"
@@ -373,6 +376,7 @@
                         <ListViewItem Height="70">
                             <Button Style="{DynamicResource BTNSTYLE}"
                                 x:Name="btnPOS"
+                                    Click="POS"
                                     Height="70"
                                     Width="200"
                                     HorizontalAlignment="Left"

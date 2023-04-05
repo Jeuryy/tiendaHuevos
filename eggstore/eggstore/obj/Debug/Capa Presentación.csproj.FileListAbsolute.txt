@@ -34,3 +34,11 @@ C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\CRUDProductos.g.cs
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\Productos.baml
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\CRUDProductos.baml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\AcercaDe.g.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\Dashboard.g.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\POS.g.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\AcercaDe.baml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\Dashboard.baml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\POS.baml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\MiCuenta.g.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\MiCuenta.baml

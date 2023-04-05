@@ -56,5 +56,28 @@ namespace eggstore
         {
             DataContext = new Productos();
         }
+
+        private void Dashboard(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Dashboard();
+        }
+
+        private void POS(object sender, RoutedEventArgs e)
+        {
+            DataContext = new POS();
+        }
+
+        private void MiCuenta(object sender, RoutedEventArgs e)
+        {
+            MiCuenta mc = new MiCuenta();
+            mc.ShowDialog();
+        }
+        private void AcercaDe(object sender, RoutedEventArgs e)
+        {
+            AcercaDe aC = new AcercaDe();
+            aC.ShowDialog();
+        }
+
+
     }
 }

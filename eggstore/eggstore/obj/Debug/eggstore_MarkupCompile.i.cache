@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\App.xaml
-5-1441478247
+9944380825
 
-10727368775
+14-975980441
 201445077709
-MainWindow.xaml;Views\CRUDProductos.xaml;Views\CRUDUsuarios.xaml;Views\Productos.xaml;Views\Usuarios.xaml;
+MainWindow.xaml;Views\AcercaDe.xaml;Views\CRUDProductos.xaml;Views\CRUDUsuarios.xaml;Views\Dashboard.xaml;Views\MiCuenta.xaml;Views\POS.xaml;Views\Productos.xaml;Views\Usuarios.xaml;
 src\img\fried.png
 True
 

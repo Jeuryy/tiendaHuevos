@@ -26,20 +26,27 @@ namespace Capa_de_datos
                 CommandText = "SP_U_Insertar",
                 CommandType = CommandType.StoredProcedure,
             };
-            com.Parameters.AddWithValue("@Nombres", Usuarios.Nombres);
-            com.Parameters.AddWithValue("@Apellidos", Usuarios.Apellidos);
-            com.Parameters.AddWithValue("@Telefono", Usuarios.Telefono);
-            com.Parameters.AddWithValue("@Identificacion", Usuarios.Identificacion);
-            com.Parameters.AddWithValue("@Correo", Usuarios.Correo);
-            com.Parameters.AddWithValue("@Sector", Usuarios.Sector);
-            com.Parameters.AddWithValue("@Privilegio", Usuarios.Privilegio);
-            com.Parameters.AddWithValue("@img", Usuarios.Img);
-            com.Parameters.AddWithValue("@Usuario", Usuarios.Usuario);
-            com.Parameters.AddWithValue("@Contrasenia", Usuarios.Contrasenia);
-            com.Parameters.AddWithValue("@Patron", Usuarios.Patron);
-            com.ExecuteNonQuery();
-            com.Parameters.Clear();
-            con.CerrarConexion();
+            try
+            {
+                com.Parameters.AddWithValue("@Nombres", Usuarios.Nombres);
+                com.Parameters.AddWithValue("@Apellidos", Usuarios.Apellidos);
+                com.Parameters.AddWithValue("@Telefono", Usuarios.Telefono);
+                com.Parameters.AddWithValue("@Identificacion", Usuarios.Identificacion);
+                com.Parameters.AddWithValue("@Correo", Usuarios.Correo);
+                com.Parameters.AddWithValue("@Sector", Usuarios.Sector);
+                com.Parameters.AddWithValue("@Privilegio", Usuarios.Privilegio);
+                com.Parameters.AddWithValue("@img", Usuarios.Img);
+                com.Parameters.AddWithValue("@Usuario", Usuarios.Usuario);
+                com.Parameters.AddWithValue("@Contrasenia", Usuarios.Contrasenia);
+                com.Parameters.AddWithValue("@Patron", Usuarios.Patron);
+                com.ExecuteNonQuery();
+                com.Parameters.Clear();
+                con.CerrarConexion();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Complete cada uno de los campos (incluyendo imagen)");
+            }
         }
         #endregion
 

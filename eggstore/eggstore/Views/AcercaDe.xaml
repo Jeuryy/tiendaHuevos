@@ -1,0 +1,80 @@
+﻿<Window x:Class="eggstore.Views.AcercaDe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:eggstore.Views"
+        mc:Ignorable="d"
+        Title="AcercaDe" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="none"
+        AllowsTransparency="True"
+        Background="Transparent"
+        MouseDown="Cerrar"
+        FontSize="15"
+        Height="300" Width="450">
+    <Border CornerRadius="10"
+            Opacity=".95"
+            Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="6"
+                   Grid.RowSpan="6"
+                   VerticalAlignment="Bottom"
+                   Source="/src/img/download.png"/>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Text="Eggs Store"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="40"
+                       FontWeight="ExtraBold"/>
+            <Image Grid.Column="3"
+                   Grid.Row="4"
+                   Grid.ColumnSpan="2"
+                   Height="60"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Source="/src/img/fried.png"/>
+            <TextBlock Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       FontSize="18"
+                       Margin="18"
+                       HorizontalAlignment="Center"
+                       Text="Creado por...nosotros"/>
+            <Image Grid.Column="1"
+                   Grid.Row="3"
+                   Source="/src/img/github.png"/>
+            <Image Grid.Column="2"
+                   Grid.Row="3"
+                   Source="/src/img/linkedin.png"/>
+            <Image Grid.Column="3"
+                   Grid.Row="3"
+                   Source="/src/img/www.png"/>
+            <Image Grid.Column="4"
+                   Grid.Row="3"
+                   Source="/src/img/gmail.png"
+                   x:Name="fondo"/>
+
+        </Grid>
+    </Border>
+</Window>

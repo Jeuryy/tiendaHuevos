@@ -79,7 +79,9 @@ namespace eggstore.Views
         {
                if (CamposLlenos() == true)
             {
-                int idgrupo = objeto_CN_Grupos.IdGrupo(cbGrupo.Text);
+                try
+                {
+                    int idgrupo = objeto_CN_Grupos.IdGrupo(cbGrupo.Text);
 
                 objeto_CE_Productos.Nombre = tbNombre.Text;
                 objeto_CE_Productos.Codigo = tbCodigo.Text;
@@ -95,6 +97,11 @@ namespace eggstore.Views
                 objeto_CN_Productos.Insertar(objeto_CE_Productos);
 
                 Content = new Productos();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)");
+                }
             }
             else
             {
@@ -116,6 +123,7 @@ namespace eggstore.Views
             tbUnidadMedida.Text = a.UnidadMedida.ToString();
             ImageSourceConverter imgs = new ImageSourceConverter();
             imagen.Source = (ImageSource)imgs.ConvertFrom(a.Img);
+
             tbDescripcion.Text = a.Descripcion.ToString();
 
             var b = objeto_CN_Grupos.Nombre(a.Grupo);
@@ -139,7 +147,9 @@ namespace eggstore.Views
 
             if (CamposLlenos() == true)
             {
-                int idgrupo = objeto_CN_Grupos.IdGrupo(cbGrupo.Text);
+                try
+                {
+                    int idgrupo = objeto_CN_Grupos.IdGrupo(cbGrupo.Text);
 
                 objeto_CE_Productos.IdArticulo = IdProducto;
                 objeto_CE_Productos.Nombre = tbNombre.Text;
@@ -155,6 +165,11 @@ namespace eggstore.Views
                 objeto_CN_Productos.ActualizarDatos(objeto_CE_Productos);
 
                 Content = new Productos();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numerico)");
+                }
             }
             else
             {

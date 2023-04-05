@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Capa_de_datos
 {
@@ -55,7 +56,10 @@ namespace Capa_de_datos
             productos.Activo = Convert.ToBoolean(row[5]);
             productos.Cantidad = Convert.ToDouble(row[6]);
             productos.UnidadMedida = Convert.ToString(row[7]);
-            productos.Img = (byte[])row[8];
+            if (productos.Img == null)
+            {
+                productos.Img = (byte[])row[8];
+            }
             productos.Descripcion = Convert.ToString(row[9]);
 
             return productos;
@@ -72,21 +76,29 @@ namespace Capa_de_datos
             CommandText = "SP_A_Insertar",
             CommandType = CommandType.StoredProcedure
         };
-        com.Parameters.AddWithValue("@Nombre", productos.Nombre);
-        com.Parameters.AddWithValue("@Grupo", productos.Grupo);
-        com.Parameters.AddWithValue("@Codigo", productos.Codigo);
-        com.Parameters.AddWithValue("@Precio", productos.Precio);
-        com.Parameters.AddWithValue("@Cantidad", productos.Cantidad);
-        com.Parameters.AddWithValue("@Activo", productos.Activo);
-        com.Parameters.AddWithValue("@UnidadMedida", productos.UnidadMedida);
-        com.Parameters.AddWithValue("@Img", productos.Img);
-        com.Parameters.AddWithValue("@Descripcion", productos.Descripcion);
-        com.ExecuteNonQuery();
-        com.Parameters.Clear();
-        con.CerrarConexion();
+
+            try 
+                {
+                com.Parameters.AddWithValue("@Nombre", productos.Nombre);
+                com.Parameters.AddWithValue("@Grupo", productos.Grupo);
+                com.Parameters.AddWithValue("@Codigo", productos.Codigo);
+                com.Parameters.AddWithValue("@Precio", productos.Precio);
+                com.Parameters.AddWithValue("@Cantidad", productos.Cantidad);
+                com.Parameters.AddWithValue("@Activo", productos.Activo);
+                com.Parameters.AddWithValue("@UnidadMedida", productos.UnidadMedida);
+                com.Parameters.AddWithValue("@Img", productos.Img);
+                com.Parameters.AddWithValue("@Descripcion", productos.Descripcion);
+                com.ExecuteNonQuery();
+                com.Parameters.Clear();
+                con.CerrarConexion();
+            } catch(Exception)
+            {
+                MessageBox.Show("Complete cada uno de los campos (incluyendo imagen)");
+            }
+
         }
         #endregion
-
+        
         #region ELIMINAR
         public void CD_Eliminar(CE_Productos productos)
         {
