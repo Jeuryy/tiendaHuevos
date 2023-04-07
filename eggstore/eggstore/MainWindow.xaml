@@ -10,7 +10,6 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="none"
         AllowsTransparency="True"
-        MouseDown="Window_MouseDown"
         Background="Transparent">
     <Window.Resources>
         <!--#region BTNTOGGLESTYLE -->
@@ -136,7 +135,8 @@
                   VerticalAlignment="Top" 
                   Background="Transparent">
                 <Border CornerRadius="10,10,0,0" 
-                        Background="#fac147"></Border>
+                        Background="#fac147"
+                        Loaded="RestaurarVentana"></Border>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -269,13 +269,15 @@
             <!--#endregion-->
             <!--#region CONTENT -->
             <Grid x:Name="gridContent"
-                   VerticalAlignment="Bottom"
-                  HorizontalAlignment="Right"
-                  Height="565"
-                  Width="925">
+                   Margin="0,35,0,0">
                 <Border CornerRadius="0,0,0,10"
-                        Background="#FFFDE7"/>
-                <ContentControl Content="{Binding}"/>
+                        Background="#FFFDE7"
+                        Opacity="0.9"/>
+                <ContentControl Content="{Binding}"
+                                Margin="70,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                x:Name="ContentControl"/>
             </Grid>
             <!--#endregion-->
             <!--#region SIDEBAR -->
