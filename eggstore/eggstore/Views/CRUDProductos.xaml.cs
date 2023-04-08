@@ -60,7 +60,7 @@ namespace eggstore.Views
         #region VALIDAR GRUPOS
         public bool CamposLlenos()
         {
-            if(tbNombre.Text=="" || tbCodigo.Text=="" || cbGrupo.Text=="" || tbPrecio.Text=="" || tbCantidad.Text=="" || tbUnidadMedida.Text=="" || tbDescripcion.Text == "")
+            if(tbNombre.Text=="" || tbCodigo.Text=="" || cbGrupo.Text=="" || tbPrecio.Text=="" || tbCantidad.Text=="" || tbDescripcion.Text == "")
             {
                 return false;
             }
@@ -85,10 +85,9 @@ namespace eggstore.Views
 
                 objeto_CE_Productos.Nombre = tbNombre.Text;
                 objeto_CE_Productos.Codigo = tbCodigo.Text;
-                objeto_CE_Productos.Precio = Double.Parse(tbPrecio.Text);
-                objeto_CE_Productos.Cantidad = Double.Parse(tbCantidad.Text);
+                objeto_CE_Productos.Precio = Decimal.Parse(tbPrecio.Text);
+                objeto_CE_Productos.Cantidad = Decimal.Parse(tbCantidad.Text);
                 objeto_CE_Productos.Activo = (bool)tbActivo.IsChecked;
-                objeto_CE_Productos.UnidadMedida = tbUnidadMedida.Text;
                 objeto_CE_Productos.Img = data;
                 objeto_CE_Productos.Descripcion = tbDescripcion.Text;
                 objeto_CE_Productos.Grupo = idgrupo;
@@ -98,9 +97,10 @@ namespace eggstore.Views
 
                 Content = new Productos();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)");
+                    MessageBox.Show(ex.ToString());
+                    //MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)");
                 }
             }
             else
@@ -120,7 +120,6 @@ namespace eggstore.Views
             tbPrecio.Text = a.Precio.ToString();
             tbActivo.IsChecked = a.Activo;
             tbCantidad.Text = a.Cantidad.ToString();
-            tbUnidadMedida.Text = a.UnidadMedida.ToString();
             ImageSourceConverter imgs = new ImageSourceConverter();
             imagen.Source = (ImageSource)imgs.ConvertFrom(a.Img);
 
@@ -154,10 +153,9 @@ namespace eggstore.Views
                 objeto_CE_Productos.IdArticulo = IdProducto;
                 objeto_CE_Productos.Nombre = tbNombre.Text;
                 objeto_CE_Productos.Codigo = tbCodigo.Text;
-                objeto_CE_Productos.Precio = Double.Parse(tbPrecio.Text);
-                objeto_CE_Productos.Cantidad = Double.Parse(tbCantidad.Text);
+                objeto_CE_Productos.Precio = Decimal.Parse(tbPrecio.Text);
+                objeto_CE_Productos.Cantidad = Decimal.Parse(tbCantidad.Text);
                 objeto_CE_Productos.Activo = (bool)tbActivo.IsChecked;
-                objeto_CE_Productos.UnidadMedida = tbUnidadMedida.Text;
                 objeto_CE_Productos.Descripcion = tbDescripcion.Text;
                 objeto_CE_Productos.Grupo = idgrupo;
 

@@ -13,7 +13,11 @@ namespace eggstore
         public MainWindow()
         {
             InitializeComponent();
-          
+          if (Properties.Settings.Default.Privilegio != 1)
+            {
+                /*lvproductos.Visibility = Visibility.Hidden;
+                lvusuarios.Visibility = Visibility.Hidden;*/
+            }
         }
 
         private void TBShow(object sender, RoutedEventArgs e)
@@ -38,7 +42,9 @@ namespace eggstore
 
         private void Cerrar(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+           /* Login lg = new Login();
+            lg.Show();*/
+            this.Close();
         }
 
         private void Usuarios_Click(object sender, RoutedEventArgs e)

@@ -62,7 +62,7 @@ namespace eggstore.Views
             int id = (int)((Button)sender).CommandParameter;
             CRUDProductos ventana = new CRUDProductos();
             frameProductos.Content = ventana;
-            Contenido.Visibility = Visibility.Visible;
+            Contenido.Visibility = Visibility.Hidden;
             ventana.IdProducto = id;
             ventana.Consultar();
             ventana.Titulo.Text = "Consulta de Producto";
@@ -72,7 +72,6 @@ namespace eggstore.Views
             ventana.tbActivo.IsEnabled = false;
             ventana.tbPrecio.IsEnabled = false;
             ventana.cbGrupo.IsEnabled = false;
-            ventana.tbUnidadMedida.IsEnabled = false;
             ventana.tbDescripcion.IsEnabled = false;
             ventana.btnSubir.IsEnabled = false;
         }
@@ -84,7 +83,7 @@ namespace eggstore.Views
             int id = (int)((Button)sender).CommandParameter;
             CRUDProductos ventana = new CRUDProductos();
             frameProductos.Content = ventana;
-            Contenido.Visibility = Visibility.Visible;
+            Contenido.Visibility = Visibility.Hidden;
             ventana.IdProducto = id;
             ventana.Consultar();
             ventana.Titulo.Text = "Actualizar Producto";
@@ -94,7 +93,6 @@ namespace eggstore.Views
             ventana.tbActivo.IsEnabled = true;
             ventana.tbPrecio.IsEnabled = true;
             ventana.cbGrupo.IsEnabled = true;
-            ventana.tbUnidadMedida.IsEnabled = true;
             ventana.tbDescripcion.IsEnabled = true;
             ventana.btnSubir.IsEnabled = true;
             ventana.btnModificar.Visibility = Visibility.Visible;
@@ -117,7 +115,6 @@ namespace eggstore.Views
             ventana.tbActivo.IsEnabled = false;
             ventana.tbPrecio.IsEnabled = false;
             ventana.cbGrupo.IsEnabled = false;
-            ventana.tbUnidadMedida.IsEnabled = false;
             ventana.tbDescripcion.IsEnabled = false;
             ventana.btnSubir.IsEnabled = false;
             ventana.btnEliminar.Visibility = Visibility.Visible;

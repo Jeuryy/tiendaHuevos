@@ -52,15 +52,14 @@ namespace Capa_de_datos
             productos.Nombre = Convert.ToString(row[1]);
             productos.Grupo = Convert.ToInt32(row[2]);
             productos.Codigo = Convert.ToString(row[3]);
-            productos.Precio = Convert.ToDouble(row[4]);
+            productos.Precio = Convert.ToDecimal(row[4]);
             productos.Activo = Convert.ToBoolean(row[5]);
-            productos.Cantidad = Convert.ToDouble(row[6]);
-            productos.UnidadMedida = Convert.ToString(row[7]);
+            productos.Cantidad = Convert.ToDecimal(row[6]);
             if (productos.Img == null)
             {
-                productos.Img = (byte[])row[8];
+                productos.Img = (byte[])row[7];
             }
-            productos.Descripcion = Convert.ToString(row[9]);
+            productos.Descripcion = Convert.ToString(row[8]);
 
             return productos;
         }
@@ -85,7 +84,6 @@ namespace Capa_de_datos
                 com.Parameters.AddWithValue("@Precio", productos.Precio);
                 com.Parameters.AddWithValue("@Cantidad", productos.Cantidad);
                 com.Parameters.AddWithValue("@Activo", productos.Activo);
-                com.Parameters.AddWithValue("@UnidadMedida", productos.UnidadMedida);
                 com.Parameters.AddWithValue("@Img", productos.Img);
                 com.Parameters.AddWithValue("@Descripcion", productos.Descripcion);
                 com.ExecuteNonQuery();
@@ -132,7 +130,6 @@ namespace Capa_de_datos
             com.Parameters.AddWithValue("@Precio", productos.Precio);
             com.Parameters.AddWithValue("@Cantidad", productos.Cantidad);
             com.Parameters.AddWithValue("@Activo", productos.Activo);
-            com.Parameters.AddWithValue("@UnidadMedida", productos.UnidadMedida);
             com.Parameters.AddWithValue("@Descripcion", productos.Descripcion);
             com.ExecuteNonQuery();
             com.Parameters.Clear();

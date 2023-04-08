@@ -34,5 +34,8 @@ namespace eggstore.Properties {
                 this["Tema"] = value;
             }
         }
+
+        public int IdUsuario { get; internal set; }
+        public int Privilegio { get; internal set; }
     }
 }

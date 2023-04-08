@@ -11,8 +11,8 @@ namespace Capa_Entidad
         private int _IdUsuario;
         private string _Nombres;
         private string _Apellidos;
-        private float _Telefono;
-        private float _Identificacion;
+        private string _Telefono;
+        private string _Identificacion;
         private string _Correo;
         private string _Sector;
         private int _Privilegio;
@@ -24,8 +24,8 @@ namespace Capa_Entidad
         public int IdUsuario { get => _IdUsuario; set => _IdUsuario = value; }
         public string Nombres { get => _Nombres; set => _Nombres = value; }
         public string Apellidos { get => _Apellidos; set => _Apellidos = value; }
-        public float Telefono { get => _Telefono; set => _Telefono = value; }
-        public float Identificacion { get => _Identificacion; set => _Identificacion = value; }
+        public string Telefono { get => _Telefono; set => _Telefono = value; }
+        public string Identificacion { get => _Identificacion; set => _Identificacion = value; }
         public string Correo { get => _Correo; set => _Correo = value; }
         public string Sector { get => _Sector; set => _Sector = value; }
         public int Privilegio { get => _Privilegio; set => _Privilegio = value; }
@@ -33,5 +33,6 @@ namespace Capa_Entidad
         public string Usuario { get => _Usuario; set => _Usuario = value; }
         public string Contrasenia { get => _Contrasenia; set => _Contrasenia = value; }
         public string Patron { get => _patron; set => _patron = value; }
+
     }
 }

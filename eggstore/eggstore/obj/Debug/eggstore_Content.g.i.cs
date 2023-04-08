@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/img/download.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/img/key.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("src/img/user.png")]
 
 

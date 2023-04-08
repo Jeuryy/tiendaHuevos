@@ -86,8 +86,8 @@ namespace eggstore.Views
 
                     objeto_CE_Usuarios.Nombres = tbNombres.Text;
                     objeto_CE_Usuarios.Apellidos = tbApellidos.Text;
-                    objeto_CE_Usuarios.Telefono = float.Parse(tbTelefono.Text);
-                    objeto_CE_Usuarios.Identificacion = float.Parse(tbIdentificacion.Text);
+                    objeto_CE_Usuarios.Telefono = tbTelefono.Text;
+                    objeto_CE_Usuarios.Identificacion = tbIdentificacion.Text;
                     objeto_CE_Usuarios.Correo = tbEmail.Text;
                     objeto_CE_Usuarios.Sector = tbSector.Text;
                     objeto_CE_Usuarios.Privilegio = privilegio;
@@ -144,8 +144,8 @@ namespace eggstore.Views
                 objeto_CE_Usuarios.IdUsuario = IdUsuario;
                 objeto_CE_Usuarios.Nombres = tbNombres.Text;
                 objeto_CE_Usuarios.Apellidos = tbApellidos.Text;
-                objeto_CE_Usuarios.Telefono = float.Parse(tbTelefono.Text);
-                objeto_CE_Usuarios.Identificacion = float.Parse(tbIdentificacion.Text);
+                objeto_CE_Usuarios.Telefono = tbTelefono.Text;
+                objeto_CE_Usuarios.Identificacion = tbIdentificacion.Text;
                 objeto_CE_Usuarios.Correo = tbEmail.Text;
                 objeto_CE_Usuarios.Sector = tbSector.Text;
                 objeto_CE_Usuarios.Privilegio = privilegio;

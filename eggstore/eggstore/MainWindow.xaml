@@ -271,8 +271,7 @@
             <Grid x:Name="gridContent"
                    Margin="0,35,0,0">
                 <Border CornerRadius="0,0,0,10"
-                        Background="#FFFDE7"
-                        Opacity="0.9"/>
+                        Background="#FFFDE7"/>
                 <ContentControl Content="{Binding}"
                                 Margin="70,0,0,0"
                                 HorizontalAlignment="Stretch"
@@ -405,7 +404,8 @@
                         </ListViewItem>
                         <!--#endregion-->
                         <!--#region PRODUCTO -->
-                        <ListViewItem Height="70">
+                        <ListViewItem Height="70"
+                                      x:Name="lvproductos">
                             <Button Style="{DynamicResource BTNSTYLE}"
                                 x:Name="btnProducto"
                                     Height="70"
@@ -435,7 +435,8 @@
                         </ListViewItem>
                         <!--#endregion-->
                         <!--#region USUARIOS -->
-                        <ListViewItem Height="70">
+                        <ListViewItem Height="70"
+                                      x:Name="lvusuarios">
                             <Button Style="{DynamicResource BTNSTYLE}"
                                 x:Name="btnUsuarios"
                                     Height="70"

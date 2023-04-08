@@ -12,10 +12,9 @@ namespace Capa_Entidad
         private string _Nombre;
         private int _Grupo;
         private string _Codigo;
-        private double _Precio;
+        private decimal _Precio;
         private bool _Activo;
-        private double _Cantidad;
-        private string _UnidadMedida;
+        private decimal _Cantidad;
         private byte[] _Img;
         private string _Descripcion;
 
@@ -23,10 +22,9 @@ namespace Capa_Entidad
         public string Nombre { get => _Nombre; set => _Nombre = value; }
         public int Grupo { get => _Grupo; set => _Grupo = value; }
         public string Codigo { get => _Codigo; set => _Codigo = value; }
-        public double Precio { get => _Precio; set => _Precio = value; }
+        public decimal Precio { get => _Precio; set => _Precio = value; }
         public bool Activo { get => _Activo; set => _Activo = value; }
-        public double Cantidad { get => _Cantidad; set => _Cantidad = value; }
-        public string UnidadMedida { get => _UnidadMedida; set => _UnidadMedida = value; }
+        public decimal Cantidad { get => _Cantidad; set => _Cantidad = value; }
         public byte[] Img { get => _Img; set => _Img = value; }
         public string Descripcion { get => _Descripcion; set => _Descripcion = value; }
     }

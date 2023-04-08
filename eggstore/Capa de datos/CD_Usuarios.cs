@@ -43,9 +43,10 @@ namespace Capa_de_datos
                 com.Parameters.Clear();
                 con.CerrarConexion();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("Complete cada uno de los campos (incluyendo imagen)");
+                //MessageBox.Show("Complete cada uno de los campos (incluyendo imagen)");
+                MessageBox.Show(e.ToString());
             }
         }
         #endregion
@@ -64,8 +65,8 @@ namespace Capa_de_datos
             DataRow row = dt.Rows[0];
             ce.Nombres = Convert.ToString(row[1]);
             ce.Apellidos = Convert.ToString(row[2]);
-            ce.Telefono = (float)Convert.ToDouble(row[3]);
-            ce.Identificacion = (float)Convert.ToDouble(row[4]);
+            ce.Telefono = Convert.ToString(row[3]);
+            ce.Identificacion = Convert.ToString(row[4]);
             ce.Correo = Convert.ToString(row[5]);
             ce.Sector = Convert.ToString(row[6]);
             ce.Privilegio = Convert.ToInt32(row[7]);
@@ -167,6 +168,30 @@ namespace Capa_de_datos
             con.CerrarConexion();
             return dt;
         }
-        #endregion  
+        #endregion
+
+        //LOGIN
+        #region LOGIN
+        public CE_Usuarios LogIn(string usuario, string contra)
+        {
+            string patron = "eggstore";
+            SqlDataAdapter da = new("SP_U_Validar", con.AbrirConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.Add("@Usuario", SqlDbType.VarChar).Value = usuario;
+            da.SelectCommand.Parameters.Add("@Contra", SqlDbType.VarChar).Value = contra;
+            da.SelectCommand.Parameters.Add("@Patron", SqlDbType.VarChar).Value = patron;
+            DataSet ds = new();
+            da.Fill(ds);
+            DataTable dt = ds.Tables[0];
+            if (dt.Rows.Count > 0) 
+                {
+                DataRow row = dt.Rows[0];
+                ce.IdUsuario = Convert.ToInt32(row[0]);
+                ce.Privilegio = Convert.ToInt32(row[1]);
+            } 
+            return ce;
+        }
+        #endregion
+
     }
 }
