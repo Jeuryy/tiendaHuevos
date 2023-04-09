@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Capa_Entidad;
 using Capa_Negocio;
+using eggstore.src.Boxes;
 using Microsoft.Win32;
 
 namespace eggstore.Views
@@ -29,7 +30,8 @@ namespace eggstore.Views
         CN_Grupos objeto_CN_Grupos = new CN_Grupos();
         CN_Productos objeto_CN_Productos = new CN_Productos();
         CE_Productos objeto_CE_Productos = new CE_Productos();
-        
+        Error error;
+
         #region INICIAL
         public CRUDProductos()
         {
@@ -48,11 +50,21 @@ namespace eggstore.Views
         #region LLENAR GRUPOS
         void Cargar()
         {
-            List<string> grupos = objeto_CN_Grupos.ListarGrupos();
-            for(int i = 0;i < grupos.Count; i++)
+            try
             {
-                cbGrupo.Items.Add(grupos[i]);
+                List<string> grupos = objeto_CN_Grupos.ListarGrupos();
+                for (int i = 0; i < grupos.Count; i++)
+                {
+                    cbGrupo.Items.Add(grupos[i]);
+                }
             }
+            catch (Exception ex)
+            {
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
+            }
+
         }
 
         #endregion
@@ -78,7 +90,7 @@ namespace eggstore.Views
         private void Crear(object sender, RoutedEventArgs e)
         {
                if (CamposLlenos() == true)
-            {
+                {
                 try
                 {
                     int idgrupo = objeto_CN_Grupos.IdGrupo(cbGrupo.Text);
@@ -114,28 +126,48 @@ namespace eggstore.Views
         #region READ
         public void Consultar()
         {
-            var a = objeto_CN_Productos.Consulta(IdProducto);
-            tbNombre.Text = a.Nombre.ToString();
-            tbCodigo.Text = a.Codigo.ToString();
-            tbPrecio.Text = a.Precio.ToString();
-            tbActivo.IsChecked = a.Activo;
-            tbCantidad.Text = a.Cantidad.ToString();
-            ImageSourceConverter imgs = new ImageSourceConverter();
-            imagen.Source = (ImageSource)imgs.ConvertFrom(a.Img);
+            try
+            {
+                var a = objeto_CN_Productos.Consulta(IdProducto);
+                tbNombre.Text = a.Nombre.ToString();
+                tbCodigo.Text = a.Codigo.ToString();
+                tbPrecio.Text = a.Precio.ToString();
+                tbActivo.IsChecked = a.Activo;
+                tbCantidad.Text = a.Cantidad.ToString();
+                ImageSourceConverter imgs = new ImageSourceConverter();
+                imagen.Source = (ImageSource)imgs.ConvertFrom(a.Img);
 
-            tbDescripcion.Text = a.Descripcion.ToString();
+                tbDescripcion.Text = a.Descripcion.ToString();
 
-            var b = objeto_CN_Grupos.Nombre(a.Grupo);
-            cbGrupo.Text = b.Nombre;
+                var b = objeto_CN_Grupos.Nombre(a.Grupo);
+                cbGrupo.Text = b.Nombre;
+            }
+            catch (Exception ex)
+            {
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
+            }
+
         }
         #endregion
 
         #region DELETE
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-            objeto_CE_Productos.IdArticulo = IdProducto;
-            objeto_CN_Productos.Eliminar(objeto_CE_Productos);
-            Content = new Productos();
+            try
+            {
+                objeto_CE_Productos.IdArticulo = IdProducto;
+                objeto_CN_Productos.Eliminar(objeto_CE_Productos);
+                Content = new Productos();
+            }
+            catch (Exception ex)
+            {
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
+            }
+
         }
 
         #endregion
@@ -164,23 +196,37 @@ namespace eggstore.Views
 
                 Content = new Productos();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numerico)");
+                    error = new Error();
+                    error.lblerror.Text = ex.Message;
+                    error.ShowDialog();
                 }
             }
             else
             {
-                MessageBox.Show("Los campos no pueden quedar vacíos.");
+                error = new Error();
+                error.lblerror.Text = "Por favor complete todos los campos(incluyendo imagen)";
+                error.ShowDialog();
             }
 
             if(imagensubida == true)
             {
-                objeto_CE_Productos.IdArticulo = IdProducto;
-                objeto_CE_Productos.Img = data;
+                try
+                {
+                    objeto_CE_Productos.IdArticulo = IdProducto;
+                    objeto_CE_Productos.Img = data;
 
-                objeto_CN_Productos.ActualizarIMG(objeto_CE_Productos);
-                Content = new Productos();
+                    objeto_CN_Productos.ActualizarIMG(objeto_CE_Productos);
+                    Content = new Productos();
+                }
+                catch (Exception ex)
+                {
+                    error = new Error();
+                    error.lblerror.Text = ex.Message;
+                    error.ShowDialog();
+                }
+
             }
         }
         #endregion
@@ -192,17 +238,27 @@ namespace eggstore.Views
         private bool imagensubida = false;
         private void Subir(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == true)
+            try
             {
-                FileStream fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
-                data = new byte[fs.Length];
-                fs.Read(data, 0, Convert.ToInt32(fs.Length));
-                fs.Close();
-                ImageSourceConverter imgs = new ImageSourceConverter();
-                imagen.SetValue(Image.SourceProperty, imgs.ConvertFromString(ofd.FileName.ToString()));
+                OpenFileDialog ofd = new OpenFileDialog();
+                if (ofd.ShowDialog() == true)
+                {
+                    FileStream fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
+                    data = new byte[fs.Length];
+                    fs.Read(data, 0, Convert.ToInt32(fs.Length));
+                    fs.Close();
+                    ImageSourceConverter imgs = new ImageSourceConverter();
+                    imagen.SetValue(Image.SourceProperty, imgs.ConvertFromString(ofd.FileName.ToString()));
+                }
+                imagensubida = true;
             }
-            imagensubida = true;
+            catch(Exception ex)
+            {
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
+            }
+
         }
         #endregion
     }

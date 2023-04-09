@@ -154,6 +154,7 @@
 
             </Button>
             <!--#endregion-->
+            <!--#region  CONTENIDO-->
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
                        Text="Eggs Store"
@@ -219,6 +220,6 @@
                     CornerRadius="0,0,20,20"
                     Background="#fff999"/>
         </Grid>
-        
+         <!--#endregion-->
     </Border>
 </Window>

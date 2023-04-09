@@ -1,4 +1,5 @@
-﻿using eggstore.Views;
+﻿using eggstore.src.Boxes;
+using eggstore.Views;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,9 +11,11 @@ namespace eggstore
     /// </summary>
     public partial class MainWindow : Window
     {
+        Error error;
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new Dashboard();
           if (Properties.Settings.Default.Privilegio != 1)
             {
                 lvproductos.Visibility = Visibility.Hidden;
@@ -131,9 +134,11 @@ namespace eggstore
                         Top = 0;
                         DragMove();
                     }
-                    catch (System.Exception)
+                    catch (System.Exception ex)
                     {
-                        throw;
+                        error = new Error();
+                        error.lblerror.Text = ex.Message;
+                        error.ShowDialog();
                     }
                 }
             };

@@ -1,4 +1,5 @@
 ﻿using Capa_Negocio;
+using eggstore.src.Boxes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,35 +26,58 @@ namespace eggstore.Views
             InitializeComponent();
             tbusuario.Focus();
         }
-
+        Error error;
         private void Acceder(object sender, RoutedEventArgs e)
         {
             if (tbusuario.Text != "" && tbcontra.Text != "")
             {
-                LogIn(tbusuario.Text, tbcontra.Text);
+                try
+                {
+                    LogIn(tbusuario.Text, tbcontra.Text);
+                }
+                catch(Exception ex)
+                {
+                    error = new Error();
+                    error.lblerror.Text = ex.Message;
+                    error.ShowDialog();
+                }
+
             }
             else
             {
-                MessageBox.Show("No puede dejar los campos vacíos.");
+                error = new Error();
+                error.lblerror.Text = "No puede dejar los campos vacíos.";
+                error.ShowDialog();
             }
         }
 
         void LogIn (string usuario, string contra)
         {
-            CN_Usuarios cn = new CN_Usuarios();
-            var a = cn.Login(usuario, contra);
-        
-        if(a.IdUsuario > 0)
+            try
             {
-                Properties.Settings.Default.IdUsuario = a.IdUsuario;
-                Properties.Settings.Default.Privilegio = a.Privilegio;
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
+                CN_Usuarios cn = new CN_Usuarios();
+                var a = cn.Login(usuario, contra);
+
+                if (a.IdUsuario > 0)
+                {
+                    Properties.Settings.Default.IdUsuario = a.IdUsuario;
+                    Properties.Settings.Default.Privilegio = a.Privilegio;
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    error = new Error();
+                    error.lblerror.Text = "Usuario y/o contraseña incorrecta(s)";
+                    error.ShowDialog();
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Usuario y/o contraseña incorrecta(s).");
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
             }
         }
 

@@ -19,6 +19,7 @@ namespace eggstore.src.Boxes
     /// </summary>
     public partial class Ingresar : Window
     {
+        Error error;
         public Ingresar()
         {
             InitializeComponent();
@@ -27,17 +28,26 @@ namespace eggstore.src.Boxes
 
         private void Ok(object sender, RoutedEventArgs e)
         {
-            bool esnumerico = decimal.TryParse(tbcantidad.Text, out _);
+            try
+            {
+                bool esnumerico = decimal.TryParse(tbcantidad.Text, out _);
 
-            if (esnumerico)
-            {
-                Total = decimal.Parse(tbcantidad.Text);
-                Efectivo = decimal.Parse(tbcantidad.Text);
-                this.Close();
+                if (esnumerico)
+                {
+                    Total = decimal.Parse(tbcantidad.Text);
+                    Efectivo = decimal.Parse(tbcantidad.Text);
+                    this.Close();
+                }
+                else
+                {
+                    this.Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.Close();
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
             }
         }
 

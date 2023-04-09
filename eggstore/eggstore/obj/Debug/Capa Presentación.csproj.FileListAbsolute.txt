@@ -55,3 +55,11 @@ C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\Microsoft.AspNetCore.Html.Abstractions.xml
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\System.Text.Encodings.Web.xml
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\eggstore_Content.g.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\LiveCharts.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\LiveCharts.pdb
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\LiveCharts.xml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\src\Boxes\Error.g.cs
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\src\Boxes\Error.baml

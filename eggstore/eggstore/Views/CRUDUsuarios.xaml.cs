@@ -21,6 +21,7 @@ using Capa_Entidad;
 using Capa_Negocio;
 using System.Drawing;
 using Image = System.Windows.Controls.Image;
+using eggstore.src.Boxes;
 
 namespace eggstore.Views
 {
@@ -32,6 +33,7 @@ namespace eggstore.Views
         readonly CN_Usuarios objeto_CN_Usuarios = new CN_Usuarios();
         readonly CE_Usuarios objeto_CE_Usuarios = new CE_Usuarios();
         readonly CN_Privilegios objeto_CN_Privilegios = new CN_Privilegios();
+        Error error;
 
         #region INICIAL
         public CRUDUsuarios()
@@ -49,11 +51,21 @@ namespace eggstore.Views
         #region CARGARPRIVILEGIOS
         void CargarCB()
         {
-            List<string> privilegios = objeto_CN_Privilegios.ListarPrivilegios();
-            for(int i=0; i<privilegios.Count; i++)
+            try
             {
-                cbPrivilegio.Items.Add(privilegios[i]);
+                List<string> privilegios = objeto_CN_Privilegios.ListarPrivilegios();
+                for (int i = 0; i < privilegios.Count; i++)
+                {
+                    cbPrivilegio.Items.Add(privilegios[i]);
+                }
             }
+            catch(Exception ex)
+            {
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
+            }
+
         }
         #endregion
         #region VALIDARCAMPOSVACIOS
@@ -100,36 +112,52 @@ namespace eggstore.Views
 
                     Content = new Usuarios();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)");
+                    error = new Error();
+                    error.lblerror.Text = ex.Message;
+                    error.ShowDialog();
                 }
 
             }
             else
             {
-                MessageBox.Show("Los campos no pueden quedar vacíos");
+                error = new Error();
+                error.lblerror.Text = "Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)";
+                error.ShowDialog();
+                error.lblerror.Text = "Los campos no pueden quedar vacíos";
+                error.ShowDialog();
             }
         }
         #endregion
         #region READ
         public void Consultar()
         {
-            var a = objeto_CN_Usuarios.Consultar(IdUsuario);
-            tbNombres.Text = a.Nombres.ToString();
-            tbApellidos.Text = a.Apellidos.ToString();
-            tbTelefono.Text = a.Telefono.ToString();
-            tbIdentificacion.Text = a.Identificacion.ToString();
-            tbEmail.Text = a.Correo.ToString();
-            tbSector.Text = a.Sector.ToString();
+            try
+            {
+                var a = objeto_CN_Usuarios.Consultar(IdUsuario);
+                tbNombres.Text = a.Nombres.ToString();
+                tbApellidos.Text = a.Apellidos.ToString();
+                tbTelefono.Text = a.Telefono.ToString();
+                tbIdentificacion.Text = a.Identificacion.ToString();
+                tbEmail.Text = a.Correo.ToString();
+                tbSector.Text = a.Sector.ToString();
 
 
-            var b = objeto_CN_Privilegios.NombrePrivilegio(a.Privilegio);
-            cbPrivilegio.Text = b.NombrePrivilegio.ToString();
+                var b = objeto_CN_Privilegios.NombrePrivilegio(a.Privilegio);
+                cbPrivilegio.Text = b.NombrePrivilegio.ToString();
 
-            ImageSourceConverter imgs = new ImageSourceConverter();
-            imagen.Source = (ImageSource)imgs.ConvertFrom(a.Img);
-            tbUsuario.Text = a.Usuario.ToString();
+                ImageSourceConverter imgs = new ImageSourceConverter();
+                imagen.Source = (ImageSource)imgs.ConvertFrom(a.Img);
+                tbUsuario.Text = a.Usuario.ToString();
+            }
+            catch (Exception ex)
+            {
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
+            }
+
         }
         #endregion
         #region UPDATE
@@ -155,44 +183,80 @@ namespace eggstore.Views
 
                 Content = new Usuarios();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numerico)");
+                    error = new Error();
+                    error.lblerror.Text = ex.Message;
+                    error.ShowDialog();
                 }
             }
             else
             {
-                MessageBox.Show("Los campos no pueden quedar vacíos");
+                error = new Error();
+                error.lblerror.Text = "Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)";
+                error.ShowDialog();
+                error.lblerror.Text = "Los campos no pueden quedar vacíos";
+                error.ShowDialog();
             }
 
             if(tbContrasenia.Text != "")
             {
-                objeto_CE_Usuarios.IdUsuario = IdUsuario;
-                objeto_CE_Usuarios.Contrasenia = tbContrasenia.Text;
-                objeto_CE_Usuarios.Patron = Patron;
+                try
+                {
+                    objeto_CE_Usuarios.IdUsuario = IdUsuario;
+                    objeto_CE_Usuarios.Contrasenia = tbContrasenia.Text;
+                    objeto_CE_Usuarios.Patron = Patron;
 
-                objeto_CN_Usuarios.ActualizarPass(objeto_CE_Usuarios);
-                Content = new Usuarios();
+                    objeto_CN_Usuarios.ActualizarPass(objeto_CE_Usuarios);
+                    Content = new Usuarios();
+                }
+                catch (Exception ex)
+                {
+                    error = new Error();
+                    error.lblerror.Text = ex.Message;
+                    error.ShowDialog();
+                }
+
             }
 
             if(imagensubida == true)
             {
-                objeto_CE_Usuarios.IdUsuario = IdUsuario;
-                objeto_CE_Usuarios.Img = data;
+                try
+                {
+                    objeto_CE_Usuarios.IdUsuario = IdUsuario;
+                    objeto_CE_Usuarios.Img = data;
 
-                objeto_CN_Usuarios.ActualizarIMG(objeto_CE_Usuarios);
-                Content = new Usuarios();
+                    objeto_CN_Usuarios.ActualizarIMG(objeto_CE_Usuarios);
+                    Content = new Usuarios();
+                }
+
+                catch (Exception ex)
+                {
+                    error = new Error();
+                    error.lblerror.Text = ex.Message;
+                    error.ShowDialog();
+                }
             }
         }
         #endregion
         #region DELETE
         private void Eliminar(object sender, RoutedEventArgs e)
         {
-            objeto_CE_Usuarios.IdUsuario = IdUsuario;
+            try
+            {
+                objeto_CE_Usuarios.IdUsuario = IdUsuario;
 
-            objeto_CN_Usuarios.Eliminar(objeto_CE_Usuarios);
+                objeto_CN_Usuarios.Eliminar(objeto_CE_Usuarios);
 
-            Content = new Usuarios();
+                Content = new Usuarios();
+            }
+            catch (Exception ex)
+            {
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
+            }
+
         }
         #endregion
         #endregion
@@ -204,17 +268,28 @@ namespace eggstore.Views
         private bool imagensubida = false;
         private void Subir(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog()==true)
+            try
             {
-                FileStream fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
-                data = new byte[fs.Length];
-                fs.Read(data, 0, System.Convert.ToInt32(fs.Length));
-                fs.Close();
-                ImageSourceConverter imgs = new ImageSourceConverter();
-                imagen.SetValue(Image.SourceProperty, imgs.ConvertFromString(ofd.FileName.ToString()));
+                OpenFileDialog ofd = new OpenFileDialog();
+                if (ofd.ShowDialog() == true)
+                {
+                    FileStream fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
+                    data = new byte[fs.Length];
+                    fs.Read(data, 0, System.Convert.ToInt32(fs.Length));
+                    fs.Close();
+                    ImageSourceConverter imgs = new ImageSourceConverter();
+                    imagen.SetValue(Image.SourceProperty, imgs.ConvertFromString(ofd.FileName.ToString()));
+                }
+                imagensubida = true;
+
             }
-            imagensubida = true;
+            catch (Exception ex)
+            {
+                error = new Error();
+                error.lblerror.Text = ex.Message;
+                error.ShowDialog();
+            }
+
         }
         #endregion
     }
