@@ -1,10 +1,16 @@
 ﻿using Capa_Negocio;
 using eggstore.src.Boxes;
+using Microsoft.Win32;
+using System;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using iTextSharp.text;
+using iTextSharp.tool.xml;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace eggstore.Views
 {
@@ -81,8 +87,8 @@ namespace eggstore.Views
             }
         }
 
-        //decimal can;
-        /*public ref decimal Existe(string valor)
+        decimal can = 0;
+        public ref decimal Existe(string valor)
         {
             for (int i = 0; i < gridProductos.Items.Count; i++)
             {
@@ -100,10 +106,15 @@ namespace eggstore.Views
                     gridProductos.Items.RemoveAt(i);
                     return ref can;
                 }
+                else
+                {
+                    can = 0;
+                    return ref can;
+                }
             }
 
             return ref can;
-        }*/
+        }
         void Agregar(string producto, decimal cantidad)
         {
             CN_Carrito carrito = new CN_Carrito();
@@ -208,10 +219,143 @@ namespace eggstore.Views
         }
         #endregion
 
+        #region PAGAR E IMPRIMIR
         private void Pagar(object sender, RoutedEventArgs e)
         {
-            //restante
+            if(gridProductos.Items.Count >= 1)
+            {
+                venta();
+                efectivo = 0;
+                precio();
+            }
+            else
+            {
+                MessageBox.Show("No hay productos para procesar.");
+            }
         }
+        CN_Carrito cN_Carrito;
+        void venta()
+        {
+            string factura = "F- " + DateTime.Now.ToString("ddMMyyyyhhmmss") + "-" + Properties.Settings.Default.IdUsuario;
+            int idusuario = Properties.Settings.Default.IdUsuario;
+            DateTime fecha = DateTime.Now;
+            cN_Carrito = new CN_Carrito();
+
+            if(cambio >= 0)
+            {
+                cN_Carrito.Venta(factura, total, fecha, idusuario);
+                venta_detalle(factura);
+                gridProductos.Items.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Efectivo insuficiente");
+            }
+        }
+
+        void venta_detalle(string factura)
+        {
+            cN_Carrito = new CN_Carrito();
+            for (int i=0; i<gridProductos.Items.Count; i++)
+            {
+                string codigo;
+                decimal totalarticulo, cantidad;
+
+                int j = 0;
+                DataGridCell cell = Getcelda(i, j);
+                TextBlock tb = cell.Content as TextBlock;
+                codigo = tb.Text;
+
+                int k = 3;
+                DataGridCell cell2 = Getcelda(i, k);
+                TextBlock tb2 = cell2.Content as TextBlock;
+                cantidad = Decimal.Parse(tb2.Text);
+
+                int l = 4;
+                DataGridCell cell3 = Getcelda(i, l);
+                TextBlock tb3 = cell3.Content as TextBlock;
+                totalarticulo = Decimal.Parse(tb3.Text);
+
+                cN_Carrito.Venta_Detalle(codigo, factura, cantidad, totalarticulo);
+            }
+            MessageBox.Show("Venta exitosa!");
+            Imprimir(factura);
+
+        }
+
+        void Imprimir (string factura)
+        {
+                System.Windows.Forms.SaveFileDialog savefile = new System.Windows.Forms.SaveFileDialog()
+            {
+                FileName = factura + ".pdf"
+            };
+            string Pagina = Properties.Resources.Ticket.ToString();
+            Pagina = Pagina.Replace("@Ticket", factura);
+            Pagina = Pagina.Replace("@efectivo", efectivo.ToString("###,###.00"));
+            Pagina = Pagina.Replace("@cambio", cambio.ToString());
+            Pagina = Pagina.Replace("@Usuario", Properties.Settings.Default.IdUsuario.ToString());
+            Pagina = Pagina.Replace("@Fecha", DateTime.Now.ToString("ddMMyyyymmss"));
+
+            string filas = string.Empty;
+
+            for (int i=0; i<gridProductos.Items.Count; i++)
+            {
+                string nombre, cantidad;
+                decimal preciounitario, totalarticulos;
+
+                int j = 1;
+                DataGridCell cell1 = Getcelda(i, j);
+                TextBlock tb1 = cell1.Content as TextBlock;
+                nombre = tb1.Text;
+
+                int k = 3;
+                DataGridCell cell2 = Getcelda(i, k);
+                TextBlock tb2 = cell2.Content as TextBlock;
+                cantidad = tb2.Text;
+
+                int l = 4;
+                DataGridCell cell3 = Getcelda(i, l);
+                TextBlock tb3 = cell3.Content as TextBlock;
+                totalarticulos = Decimal.Parse(tb3.Text);
+
+                int m = 2;
+                DataGridCell cell4 = Getcelda(i, m);
+                TextBlock tb4 = cell4.Content as TextBlock;
+                preciounitario = Decimal.Parse(tb4.Text);
+
+                filas += "<tr>";
+                filas += "<td align=\"center\">"+cantidad.ToString()+"</td>";
+                filas += "<td align=\"center\">" + nombre.ToString() + "</td>";
+                filas += "<td align=\"right\">" + preciounitario.ToString() + "</td>";
+                filas += "<td align=\"right\">" + totalarticulos.ToString() + "</td>";
+                filas += "</tr>";
+            }
+            int cant = gridProductos.Items.Count;
+            Pagina = Pagina.Replace("@cant_articulos", cant.ToString());
+            Pagina = Pagina.Replace("@grid", filas);
+            Pagina = Pagina.Replace("@TOTAL", total.ToString());
+        
+            if(savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(savefile.FileName, FileMode.Create))
+                {
+                    int artfilas = gridProductos.Items.Count;
+                    Rectangle pagesize = new Rectangle(298, 420 + (artfilas * 12));
+                    Document pdfDoc = new Document(pagesize, 25, 25, 25, 25);
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+
+                    using (StringReader sr = new StringReader(Pagina))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    }
+                    pdfDoc.Close();
+                    stream.Close();
+                }
+                
+            }
+        }
+        #endregion
 
 
         #region FILAS, COLUMNAS Y CELDAS

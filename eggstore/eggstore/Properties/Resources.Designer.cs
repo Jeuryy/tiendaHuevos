@@ -59,5 +59,32 @@ namespace eggstore.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///    &lt;head&gt;
+        ///        &lt;meta charset=&quot;utf-8&quot;/&gt;
+        ///        &lt;title&gt;&lt;/title&gt;
+        ///    &lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;div align=&quot;center&quot;&gt;
+        ///        &lt;hr width=&quot;300&quot; /&gt;
+        ///        &lt;table&gt;
+        ///            &lt;tr align=&quot;center&quot;&gt;
+        ///                &lt;td&gt;IVA REG #000-0&lt;/td&gt;
+        ///            &lt;/tr&gt;
+        ///            &lt;tr align=&quot;center&quot;&gt;
+        ///                &lt;td&gt;NIT: 0000-00000-000-0&lt;/td&gt;
+        ///            &lt;/tr&gt;
+        ///            &lt;tr align=&quot;center&quot;&gt;
+        ///                &lt;td&gt;Giro: Comercial&lt;/td&gt;
+        ///           [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Ticket {
+            get {
+                return ResourceManager.GetString("Ticket", resourceCulture);
+            }
+        }
     }
 }

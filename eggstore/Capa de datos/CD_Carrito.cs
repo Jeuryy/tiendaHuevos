@@ -66,6 +66,36 @@ namespace Capa_de_datos
             return dt;
         }
         #endregion
+
+        #region VENTA
+        public void Venta(string factura, decimal total, DateTime fecha, int idusuario)
+        {
+            SqlCommand com = new("SP_C_Venta", con.AbrirConexion());
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.Add("@No_Factura", SqlDbType.VarChar).Value = factura;
+            com.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = fecha;
+            com.Parameters.Add("@Total", SqlDbType.Decimal).Value = total;
+            com.Parameters.Add("@idusuario", SqlDbType.Int).Value = idusuario;
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+        #endregion
+
+        #region VENTA DETALLE
+        public void Venta_Detalle(string codigo, string factura, decimal cantidad, decimal totalarticulo)
+        {
+            SqlCommand com = new("SP_C_Venta_Detalle", con.AbrirConexion());
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.Add("@codigo", SqlDbType.VarChar).Value = codigo;
+            com.Parameters.Add("@No_Factura", SqlDbType.VarChar).Value = factura;
+            com.Parameters.Add("@cantidad", SqlDbType.Decimal).Value = cantidad;
+            com.Parameters.Add("@total", SqlDbType.Decimal).Value = totalarticulo;
+            com.ExecuteNonQuery();
+            com.Parameters.Clear();
+            con.CerrarConexion();
+        }
+        #endregion
     }
 
 }

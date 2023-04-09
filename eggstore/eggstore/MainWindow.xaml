@@ -466,6 +466,18 @@
                         <!--#endregion-->
                     </ListView>
                     <!--#endregion-->
+                    <!--#region CAMBIAR CUENTA-->
+                    <Button x:Name="btnSalir"
+                        Grid.Row="4"
+                        Grid.Column="3"
+                        VerticalAlignment="Bottom"
+                        Content="Salir"
+                        Click="cambiarCuenta"
+                        Margin="5,150,0,0"
+                        Width="50"
+                        Height="30"
+                        Background="#fac867"/>
+                    <!--#endregion-->
                 </StackPanel>
                 <!--#endregion-->
 

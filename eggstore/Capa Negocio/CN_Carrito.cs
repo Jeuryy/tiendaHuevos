@@ -25,5 +25,19 @@ namespace Capa_Negocio
             return objCarrito.Agregar(producto, cantidad);
         }
         #endregion
+
+        #region VENTA
+        public void Venta (string factura, decimal total, DateTime fecha, int idusuario)
+        {
+            objCarrito.Venta(factura, total, fecha, idusuario);
+        }
+        #endregion
+
+        #region VENTA DETALLE
+        public void Venta_Detalle(string codigo, string factura, decimal cantidad, decimal totalarticulo)
+        {
+            objCarrito.Venta_Detalle(codigo, factura, cantidad, totalarticulo);
+        }
+        #endregion
     }
 }

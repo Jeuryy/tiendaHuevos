@@ -15,8 +15,8 @@ namespace eggstore
             InitializeComponent();
           if (Properties.Settings.Default.Privilegio != 1)
             {
-                /*lvproductos.Visibility = Visibility.Hidden;
-                lvusuarios.Visibility = Visibility.Hidden;*/
+                lvproductos.Visibility = Visibility.Hidden;
+                lvusuarios.Visibility = Visibility.Hidden;
             }
         }
 
@@ -160,5 +160,11 @@ namespace eggstore
         }
         #endregion
 
+        private void cambiarCuenta(object sender, RoutedEventArgs e)
+        {
+            Login lg = new Login();
+            lg.Show();
+            this.Close();
+        }
     }
 }

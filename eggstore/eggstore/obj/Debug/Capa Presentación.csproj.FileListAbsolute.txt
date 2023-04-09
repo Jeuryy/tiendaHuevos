@@ -46,3 +46,12 @@ C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\Views\Login.baml
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\src\Boxes\Ingresar.g.cs
 C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\src\Boxes\Ingresar.baml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\itextsharp.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\Microsoft.AspNetCore.Html.Abstractions.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\itextsharp.xml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\Microsoft.AspNetCore.Html.Abstractions.xml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\elmej\OneDrive\Documentos\JEURY\eggstore\tiendaHuevos\eggstore\eggstore\obj\Debug\eggstore_Content.g.cs
