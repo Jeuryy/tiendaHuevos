@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Capa_de_datos
 {
@@ -96,6 +97,7 @@ namespace Capa_de_datos
             con.CerrarConexion();
         }
         #endregion
+
     }
 
 }

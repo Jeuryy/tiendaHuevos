@@ -72,7 +72,7 @@ namespace eggstore.Views
         }
         #endregion
 
-        #region LIMPIAR
+         #region LIMPIAR
         void Limpiar()
         {
             tbbuscar.Text = "";
@@ -367,9 +367,10 @@ namespace eggstore.Views
                     totalarticulo = Decimal.Parse(tb3.Text);
 
                     cN_Carrito.Venta_Detalle(codigo, factura, cantidad, totalarticulo);
+
                 }
                 MessageBox.Show("Venta exitosa!");
-                Imprimir(factura);
+                    Imprimir(factura);
             }
             catch (Exception ex)
             {

@@ -109,9 +109,9 @@ namespace eggstore.Views
 
                 Content = new Productos();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)");
                     //MessageBox.Show("Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)");
                 }
             }

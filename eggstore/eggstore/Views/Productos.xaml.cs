@@ -146,7 +146,7 @@ namespace eggstore.Views
                 int id = (int)((Button)sender).CommandParameter;
                 CRUDProductos ventana = new CRUDProductos();
                 frameProductos.Content = ventana;
-                Contenido.Visibility = Visibility.Visible;
+                Contenido.Visibility = Visibility.Hidden;
                 ventana.IdProducto = id;
                 ventana.Consultar();
                 ventana.Titulo.Text = "Eliminar Producto";

@@ -39,5 +39,6 @@ namespace Capa_Negocio
             objCarrito.Venta_Detalle(codigo, factura, cantidad, totalarticulo);
         }
         #endregion
+
     }
 }

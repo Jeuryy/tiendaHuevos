@@ -89,11 +89,12 @@ namespace eggstore.Views
 
         #region CREATE
         private void Crear(object sender, RoutedEventArgs e)
-        { 
-            if(CamposLlenos()==true && tbContrasenia.Text != "")
+        {
+            try
             {
-                try
+                if (CamposLlenos()==true && tbContrasenia.Text != "")
                 {
+
                     int privilegio = objeto_CN_Privilegios.IdPrivilegio(cbPrivilegio.Text);
 
                     objeto_CE_Usuarios.Nombres = tbNombres.Text;
@@ -112,22 +113,22 @@ namespace eggstore.Views
 
                     Content = new Usuarios();
                 }
-                catch (Exception ex)
+                else
+                {
+                    error = new Error();
+                    error.lblerror.Text = "Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...) y completar todos los campos";
+                    error.ShowDialog();
+                    //
+                }
+            }
+            catch (Exception ex)
                 {
                     error = new Error();
                     error.lblerror.Text = ex.Message;
                     error.ShowDialog();
                 }
 
-            }
-            else
-            {
-                error = new Error();
-                error.lblerror.Text = "Asegúrese de agregar el tipo de dato correctamente (No texto en campo numérico...)";
-                error.ShowDialog();
-                error.lblerror.Text = "Los campos no pueden quedar vacíos";
-                error.ShowDialog();
-            }
+          
         }
         #endregion
         #region READ
